@@ -11,6 +11,8 @@ co=S.solve_right(result)
 
 
 class prng:
+    co=co
+    n=n
     def __init__(self):
         self.s = s[:100]
     def next(self):
