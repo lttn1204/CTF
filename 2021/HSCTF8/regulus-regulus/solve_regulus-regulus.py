@@ -11,4 +11,4 @@ d_ = inverse(e,phi)
 if d_ == d:
     d_ += phi
     
-print(d2)
+print(d_)
