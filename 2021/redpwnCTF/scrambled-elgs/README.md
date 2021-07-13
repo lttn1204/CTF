@@ -58,4 +58,4 @@ Mình loay hoay tìm xem có hàm nào trong sage có thể tìm được rank c
 
 Sau 1 lúc tìm thì mình thấy [decoder.fr](https://www.dcode.fr/permutation-rank) có 1 đoạn hướng dẫn tìm rank như sau:
 
-!https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/scrambled-elgs/image1.png)
+![][https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/scrambled-elgs/image1.png]
