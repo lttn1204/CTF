@@ -20,7 +20,7 @@ Nhưng khi tạo các điểm thì:
 
 Điểm G không thể tạo được vì không nằm trong đường cong. Mình nghĩ đề cố tình cho sai điểm G nên mình sẽ tìm lại điểm G đúng.
 
-Mình thử tìm là Gy từ Gx bằng **lift_x()**mà may mắn là đúng điểm G cần tim 
+Mình thử tìm là Gy từ Gx bằng **lift_x()** thì may mắn là đúng điểm G cần tim 
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/blecc/image2.png)
 
