@@ -45,14 +45,14 @@ k = secrets.randbelow(n)
 t1 = g^k
 t2 = m*h^k
 ```
-Vì range của k khá bé nên mình brute force để tìm k thõa mãn ```t1 = g^k``` từ đó tim lại m bằng cách lấy t1\*h^-k
+Vì range của ```k``` khá bé nên mình brute force để tìm k thõa mãn ```t1 = g^k``` từ đó tim lại m bằng cách lấy ```t1\*h^-k```
 ```py 
 for k in range(n):
 	if t1==g^k:
 		break
 m=t2*(h^-k)
 ```
-Lúc này chỉ cần tìm được rank() của m là sẽ tìm lại được flag.
+Lúc này chỉ cần tìm được ```rank``` của m là sẽ tìm lại được flag.
 
 Mình loay hoay tìm xem có hàm nào trong sage có thể tìm được rank của m không, nhưng mà tìm hòai mà không ra được :(
 
