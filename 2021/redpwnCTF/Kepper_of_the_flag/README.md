@@ -102,7 +102,7 @@ Ta sẽ có:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image2.png)
 
-Lúc này tìm sẽ tìm lại được ```k``` và dễ dàng tim lại ```x``` theo công thức phía trên.
+Lúc này tìm sẽ tìm lại được ```k1``` và dễ dàng tim lại ```x``` theo công thức phía trên.
 
 Có được ```x``` cứ tính ```r``` và ```s``` theo công thức ở Server cho là sẽ kí được ```b'give flag'``` 
 
