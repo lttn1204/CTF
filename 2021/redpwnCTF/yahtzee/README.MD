@@ -77,6 +77,16 @@ if __name__ == '__main__':
 Mõi lần ta input thì server sẽ trả về AES-CTR encrypt của ouput random_message() với key là không đổi và nonce là output của TrueRNG
 
 ### Phân tích 1 chút :
-* Hàm next() cTrueRNG đơn giản sẽ trả về 1 số random từ 0 -> 12
-* random_message() sẽ lấy ngẫu nhiên 1 đoan quotes và chèn flag vào 1 vị trí bất kì bất kì trong đoạn ấy
-* Khi encrypt AES-CTR cũng giống như OTP, tức là sẽ **xor** plaintext với 1 đoạn nào đấy dựa vào **key** và **nonce**, giã sử mã hóa 2 message với key và nocne giống nhau thì đồng nghĩ với việc xor 2 message với cùng 1 đoạn ngâu nhiên nào đó  
+* Hàm **next()** của **TrueRNG** đơn giản sẽ trả về 1 số random từ 0 -> 12 làm giá trị nonce cho AES-CTR encrypt
+* **random_message()** sẽ lấy ngẫu nhiên 1 quotes (trong tổng số 25 quotes) và chèn **flag** vào vị trí bất kì trong quotes ấy
+* Khi encrypt AES-CTR cũng giống như OTP, tức là sẽ **xor** **plaintext** với 1 đoạn ngâu nhiên dựa vào **key** và **nonce**, giã sử mã hóa 2 message với cùng 1  **key** và **nocne** thì đồng nghĩ với việc xor 2 message với cùng 1 key (khác với key ở trên nhé)
+* key của AES-CTR không đổi trong mỗi lần connect
+
+Vì next() chỉ trả về từ 0 -> 12 và chỉ có 25 quotes thôi nên mình có thể brute force request thật nhiều lên Server để nhận lại nhiều output. Lúc này trong cái đống output ấy cũng sẽ có cái được encrypt chung 1 key (random ra cùng 1 nonce)  và được lấy từ chung quotes :)
+
+Check thử thì thấy các output có tổng cộng 25 độ dài khác nhau, vậy tức là không có quotes nào có chung độ dài ( AES-CTR encrypt không làm thay đổi độ dài),nên dễ dàng biết cái nào la encrypt của chung 1 quotes
+
+Tiếp theo xor 2 quotes có cùng độ dài với nhau, nếu ra được nhiều  b'\x00' thì chúng được mã hóa chung 1 key. Lúc này sẽ có 1 đoạn hoặc 2  không phải b'\x00' vì đoạn này chinh là flag đã được chèn vào.
+
+
+
