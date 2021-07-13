@@ -97,7 +97,7 @@ Bây giờ giá sử với quotes1 mình sẽ chọn 2 ouput đã tìm được 
 
 Lúc này **xored1** = **flag** xor **1 đoạn của quotes1**, vì mình biết được flag format là ***flag{*** nên mình  xor **xored1** với **flag{**, lúc này mình sẽ ra được 5 chữ cái english nào đó có thể thành từ được ( vì là quotes mà :) ) rồi sau đó tiếp tục đoán xem các chữ cái tiếp theo là gì và xor ngược lại với **xored1**để tìm được các kí tự tiếp theo của flag: 
 
-Ví dụ ``` 'flag{' ^ xorred1 = 'You c'``` thì mình đoán chữ ấy có thể là *** You can *** , rồi lại lấy *** You can *** xor ngược lại **xored1** . Cứ làm như thế đến khi không đoán được nữa thì chuyển qua làm với **xored2** ( tương tự xored1 nhưng với quotes2) 
+Ví dụ ``` 'flag{' ^ xorred1 = 'You c'``` thì mình đoán chữ ấy có thể là  ```You can ``` , rồi lại lấy ``` You can ``` xor ngược lại  **xored1** . Cứ làm như thế đến khi không đoán được nữa thì chuyển qua làm với **xored2** ( tương tự xored1 nhưng với quotes2) , lúc này không cần làm lại tmà cứ lấy đoạn flag vừa tìm được để xor và tìm các kí tự tiếp theo, đén khi không đoán được thì lại chuyển sang quotes khác ...
 
 Làm như thế đến khi nào ra flag thì dừng :)
 
