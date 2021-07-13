@@ -1,5 +1,12 @@
 # Challenge
 Đề bài cho ta 1 file:
-```rb
-2021/redpwnCTF/blecc/blecc.txt
+```
+p = 17459102747413984477
+a = 2
+b = 3
+G = (15579091807671783999, 15579091807671783999)
+Q = (8859996588597792495, 2628834476186361781)
+d = ???
+Can you help me find `d`?
+Decode it as a string and wrap in flag format.
 ```
