@@ -84,4 +84,5 @@ else:
 ```
 Đề cho ta 1 Server verify DSA. Chúng ta có thể input 2 lần khác nhau đẻ lấy 2 chữ kí và phải nhập lại chữ kí đúng của b"give flag" để có flag
 
-$ x \
+Để kí được message thì chúng ta phải có x. Trong DSA x có thể tìm lại được nếu như ta có k vì: 
+![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image1.png)
