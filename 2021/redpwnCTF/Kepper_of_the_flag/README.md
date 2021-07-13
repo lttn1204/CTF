@@ -84,4 +84,4 @@ else:
 ```
 Đề cho ta 1 Server verify DSA. Chúng ta có thể input 2 lần khác nhau đẻ lấy 2 chữ kí và phải nhập lại chữ kí đúng của b"give flag" để có flag
 
- $$ y = mx +b $$ {#eq:description}$
+$ x \
