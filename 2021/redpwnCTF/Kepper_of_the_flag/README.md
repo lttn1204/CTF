@@ -83,10 +83,12 @@ else:
     print("sorry")
 ```
 Đề cho ta 1 Server verify DSA. Chúng ta có thể input 2 lần khác nhau đẻ lấy 2 chữ kí và phải nhập lại chữ kí đúng của b"give flag" để có flag
-Thông tin chúng ta có:
-** p, q ,g, y**
+Thông tin chúng ta có: ** p, q ,g, y**
+
 Nếu chúng ta gửi 1 message lên để kí thì ta sẽ được **(H(m),r,s**
+
 Để kí được message thì chúng ta phải có x. Trong DSA x có thể tìm lại được nếu như ta có k vì: 
+
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image1.png)
 
 
