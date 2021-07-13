@@ -74,3 +74,9 @@ if __name__ == '__main__':
         print('Ciphertext:', hexlify(encrypted).decode())
         inp = input(prompt)
 ```
+Mõi lần ta input thì server sẽ trả về AES-CTR encrypt của ouput random_message() với key là không đổi và nonce là output của TrueRNG
+
+### Phân tích 1 chút :
+* Hàm next() cTrueRNG đơn giản sẽ trả về 1 số random từ 0 -> 12
+* random_message() sẽ lấy ngẫu nhiên 1 đoan quotes và chèn flag vào 1 vị trí bất kì bất kì trong đoạn ấy
+* Khi encrypt AES-CTR cũng giống như OTP, tức là sẽ **xor** plaintext với 1 đoạn nào đấy dựa vào **key** và **nonce**, giã sử mã hóa 2 message với key và nocne giống nhau thì đồng nghĩ với việc xor 2 message với cùng 1 đoạn ngâu nhiên nào đó  
