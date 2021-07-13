@@ -100,7 +100,7 @@ Lúc này ta thấy **H(message1) = H(message2) = > k1+1=k2**
 
 Ta sẽ có: 
 
-![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image2.png)
+![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image.png)
 
 Lúc này tìm sẽ tìm lại được ```k1``` và dễ dàng tim lại ```x``` theo công thức phía trên.
 
