@@ -37,3 +37,18 @@ ct = (t1,t2)
 with open('output.json','w') as f:
 	json.dump({'g':str(g),'h':str(h),'t1':str(t1),'t2':str(t2)}, f)
 ```
+Đề khởi tạo SymmetricGroup với n = 25000 cùng với m là element có rank là pad(flag), và cho ta g, h ,t1 ,t2
+Quan sát đoạn 
+```
+k = secrets.randbelow(n)
+t1 = g^k
+t2 = m*h^k
+```
+Vì range của k khá bé nên mình brute force để tìm k thõa mãn ```t1 = g^k``` từ đó tim lại m bằng cách lấy t1\*h^-k
+```py 
+for k in range(n):
+	if t1==g^k:
+		break
+m=t2*(h^-k)
+```
+
