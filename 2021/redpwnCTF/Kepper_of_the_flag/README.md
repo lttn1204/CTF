@@ -89,17 +89,20 @@ Nếu chúng ta gửi 1 message lên để kí thì ta sẽ được **H(m),r,s*
 
 Quan sát kĩ mọi thứ có vẻ bình thường  nhưng ```k = (H(m) + pad + i) % q```  hơi khác so với 1 DSA thông thường.
 
-k trong DSA phải thật sư ngẫu nhiên để tranh việc bị lộ private key **x** vì nếu có k thì sẽ dễ dàng tim được x:
+k trong DSA phải thật sư ngẫu nhiên để tranh việc bị lộ private key ```x``` vì nếu có ```k``` thì sẽ dễ dàng tim được ```x```:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image1.png)
 
-Nếu chúng ta có được **x** thì dễ dàng kí được message ```b'give flag'```
+Nếu chúng ta có được ```x``` thì dễ dàng kí được message ```b'give flag'```
 
 Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng **k** được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên mình sẽ tìm cách nhập 2 message sao cho Sha1 của chúng giống nhau. Điều này hoàn toàn có thể vì Sha1 có collision và mình tìm thấy ở [shatted.io](https://shattered.io/) 2 file pdf có cùng sha1. Download file về và dùng nó để làm 2 message gửi lên server :)
 Lúc này ta thấy **H(message1) = H(message2) = > k1+1=k2**
 
-V
+Ta sẽ có: 
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image2.png)
 
-Ta có thể tính lại được k và tìm x nhờ công thức phía trên 
+Lúc này tìm sẽ tìm lại được ```k``` và dễ dàng tim lại ```x``` theo công thức phía trên.
+
+Có được ```x``` cứ tính ```r``` và ```s``` theo công thức ở Server cho là sẽ kí được ```b'give flag'```
+[full_script](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/solve.py)
