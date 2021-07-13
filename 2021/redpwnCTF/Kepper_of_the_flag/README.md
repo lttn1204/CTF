@@ -95,8 +95,11 @@ k trong DSA phải thật sư ngẫu nhiên để tranh việc bị lộ private
 
 Nếu chúng ta có được **x** thì dễ dàng kí được message ```b'give flag'```
 
-Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng k được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên nếu như chúng ta có cách nhập 2 message sao cho **Sha1(message1) = Sha1(message2)** thì lúc này  **k1+1 = k2**.
+Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng **k** được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên mình sẽ tìm cách nhập 2 message sao cho Sha1 của chúng giống nhau. Điều này hoàn toàn có thể vì Sha1 có collision và mình tìm thấy ở [shatted.io](https://shattered.io/) 2 file pdf có cùng sha1. Download file về và dùng nó để làm 2 message gửi lên server :)
+Lúc này ta thấy **H(message1) = H(message2) = > k1+1=k2**
 
-Lúc này: 
+V
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image2.png)
+
+Ta có thể tính lại được k và tìm x nhờ công thức phía trên 
