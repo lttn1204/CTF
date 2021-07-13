@@ -82,11 +82,26 @@ Mõi lần ta input thì server sẽ trả về AES-CTR encrypt của ouput rand
 * Khi encrypt AES-CTR cũng giống như OTP, tức là sẽ **xor** **plaintext** với 1 đoạn ngâu nhiên dựa vào **key** và **nonce**, giã sử mã hóa 2 message với cùng 1  **key** và **nocne** thì đồng nghĩ với việc xor 2 message với cùng 1 key (khác với key ở trên nhé)
 * key của AES-CTR không đổi trong mỗi lần connect
 
+## Ý tưởng 
 Vì next() chỉ trả về từ 0 -> 12 và chỉ có 25 quotes thôi nên mình có thể brute force request thật nhiều lên Server để nhận lại nhiều output. Lúc này trong cái đống output ấy cũng sẽ có cái được encrypt chung 1 key (random ra cùng 1 nonce)  và được lấy từ chung quotes :)
 
 Check thử thì thấy các output có tổng cộng 25 độ dài khác nhau, vậy tức là không có quotes nào có chung độ dài ( AES-CTR encrypt không làm thay đổi độ dài),nên dễ dàng biết cái nào la encrypt của chung 1 quotes
 
-Tiếp theo xor 2 quotes có cùng độ dài với nhau, nếu ra được nhiều  b'\x00' thì chúng được mã hóa chung 1 key. Lúc này sẽ có 1 đoạn hoặc 2  không phải b'\x00' vì đoạn này chinh là flag đã được chèn vào.
+Tiếp theo xor 2 quotes có cùng độ dài với nhau, nếu ra được nhiều  b'\x00' thì chúng được mã hóa chung 1 key. Lúc này sẽ có 1 không phải b'\x00' vì đoạn này chinh là flag đã được chèn vào.
+
+Lúc này với mỗi quotes ban đầu ta có được các ouput của quotes ấy được encrypt với cùng 1 key
+
+Mình sẽ gọi quotes ban đầu từ quotes1 -> quotes25 cho dễ hiểu nhé
+
+Bây giờ giá sử với quotes1 mình sẽ chọn 2 ouput đã tìm được ở trên được mã hóa cùng 1 key. Xor 2 ouput ấy sẽ ra được rất nhiều b'\x00' và có 1 đoạn không phải b'\x00' mình tam gọi đoạn này là **xored1**
+
+Lúc này **xored1** = **flag** xor **1 đoạn của quotes1**, vì mình biết được flag format là ***flag{*** nên mình  xor **xored1** với **flag{**, lúc này mình sẽ ra được 5 chữ cái english nào đó có thể thành từ được ( vì là quotes mà :) ) rồi sau đó tiếp tục đoán xem các chữ cái tiếp theo là gì và xor ngược lại với **xored1**để tìm được các kí tự tiếp theo của flag: 
+
+Ví dụ ``` 'flag{' ^ xorred1 = 'You c'``` thì mình đoán chữ ấy có thể là *** You can *** , rồi lại lấy *** You can *** xor ngược lại **xored1** . Cứ làm như thế đến khi không đoán được nữa thì chuyển qua làm với **xored2** ( tương tự xored1 nhưng với quotes2) 
+
+Làm như thế đến khi nào ra flag thì dừng :)
+
+### Vì bài này mình làm đa số bằng tay nên mình chỉ ghi lại ý tưởng thôi nha :D
 
 
 
