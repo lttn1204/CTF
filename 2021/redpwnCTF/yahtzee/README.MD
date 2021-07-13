@@ -93,11 +93,11 @@ Lúc này với mỗi quotes ban đầu ta có được các ouput của quotes 
 
 Mình sẽ gọi quotes ban đầu từ quotes1 -> quotes25 cho dễ hiểu nhé
 
-Bây giờ giá sử với quotes1 mình sẽ chọn 2 ouput đã tìm được ở trên được mã hóa cùng 1 key. Xor 2 ouput ấy sẽ ra được rất nhiều b'\x00' và có 1 đoạn không phải b'\x00' mình tam gọi đoạn này là **xored1**
+Bây giờ giá sử với quotes1 mình sẽ chọn 2 ouput đã tìm được ở trên được mã hóa cùng 1 key. Xor 2 ouput ấy sẽ ra được rất nhiều b'\x00' và có 1 đoạn không phải b'\x00' mình tam gọi đoạn này là ```xored1```
 
-Lúc này **xored1** = **flag** xor **1 đoạn của quotes1**, vì mình biết được flag format là ***flag{*** nên mình  xor **xored1** với **flag{**, lúc này mình sẽ ra được 5 chữ cái english nào đó có thể thành từ được ( vì là quotes mà :) ) rồi sau đó tiếp tục đoán xem các chữ cái tiếp theo là gì và xor ngược lại với **xored1**để tìm được các kí tự tiếp theo của flag: 
+Lúc này ```xored1 = flag xor 1 đoạn của quotes1```, vì mình biết được flag format là ```flag{``` nên mình  xor ```xored1``` với ```flag{```, lúc này mình sẽ ra được 5 chữ cái english nào đó có thể thành từ được ( vì là quotes mà :) ) rồi sau đó tiếp tục đoán xem các chữ cái tiếp theo là gì và xor ngược lại với **xored1**để tìm được các kí tự tiếp theo của flag: 
 
-Ví dụ ``` 'flag{' ^ xored1 = 'You c'``` thì mình đoán chữ ấy có thể là  ```You can ``` , rồi lại lấy ``` You can ``` xor ngược lại  **xored1** . Cứ làm như thế đến khi không đoán được nữa thì chuyển qua làm với **xored2** ( tương tự xored1 nhưng với quotes2) , lúc này không cần làm lại tmà cứ lấy đoạn flag vừa tìm được để xor và tìm các kí tự tiếp theo, đén khi không đoán được thì lại chuyển sang quotes khác ...
+Ví dụ ``` 'flag{' ^ xored1 = 'You c'``` thì mình đoán chữ ấy có thể là  ```You can ``` , rồi lại lấy ``` You can ``` xor ngược lại  ```xored1``` . Cứ làm như thế đến khi không đoán được nữa thì chuyển qua làm với ```xored2``` ( tương tự xored1 nhưng với quotes2) , lúc này không cần làm lại tmà cứ lấy đoạn flag vừa tìm được để xor và tìm các kí tự tiếp theo, đén khi không đoán được thì lại chuyển sang quotes khác ...
 
 Làm như thế đến khi nào ra flag thì dừng :)
 
