@@ -60,5 +60,5 @@ Sau 1 lúc tìm thì mình thấy [decoder.fr](https://www.dcode.fr/permutation-
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/scrambled-elgs/image1.png)
 
-Làm theo hướng dẫn và có flag :)
+Tìm rank theo công thức trên và c:)
 [full_script](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/scrambled-elgs/solve.sage)
