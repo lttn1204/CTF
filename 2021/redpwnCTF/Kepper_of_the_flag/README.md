@@ -83,12 +83,20 @@ else:
     print("sorry")
 ```
 Đề cho ta 1 Server verify DSA. Chúng ta có thể input 2 lần khác nhau đẻ lấy 2 chữ kí và phải nhập lại chữ kí đúng của b"give flag" để có flag
-Thông tin chúng ta có: ** p, q ,g, y **
+Thông tin chúng ta có:  **p, q ,g, y**
 
-Nếu chúng ta gửi 1 message lên để kí thì ta sẽ được **(H(m),r,s**
+Nếu chúng ta gửi 1 message lên để kí thì ta sẽ được **H(m),r,s**
 
-Để kí được message thì chúng ta phải có x. Trong DSA x có thể tìm lại được nếu như ta có k vì: 
+Quan sát kĩ mọi thứ có vẻ bình thường  nhưng ```k = (H(m) + pad + i) % q```  hơi khác so với 1 DSA thông thường.
+
+k trong DSA phải thật sư ngẫu nhiên để tranh việc bị lộ private key **x** vì nếu có k thì sẽ dễ dàng tim được x:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image1.png)
 
+Nếu chúng ta có được **x** thì dễ dàng kí được message ```b'give flag'```
 
+Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng k được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên nếu như chúng ta có cách nhập 2 message sao cho **Sha1(message1) = Sha1(message2)** thì lúc này  **k1+1 = k2**.
+
+Lúc này: 
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image2.png)
