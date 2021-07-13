@@ -45,7 +45,7 @@ k = secrets.randbelow(n)
 t1 = g^k
 t2 = m*h^k
 ```
-Vì range của ```k``` khá bé nên mình brute force để tìm k thõa mãn ```t1 = g^k``` từ đó tim lại m bằng cách lấy ```t1\*h^-k```
+Vì range của ```k``` khá bé nên mình brute force để tìm k thõa mãn ```t1 = g^k``` từ đó tim lại m bằng cách lấy ```t1*h^-k```
 ```py 
 for k in range(n):
 	if t1==g^k:
