@@ -38,6 +38,7 @@ with open('output.json','w') as f:
 	json.dump({'g':str(g),'h':str(h),'t1':str(t1),'t2':str(t2)}, f)
 ```
 Đề khởi tạo SymmetricGroup với n = 25000 cùng với m là element có rank là pad(flag), và cho ta g, h ,t1 ,t2
+
 Quan sát đoạn 
 ```
 k = secrets.randbelow(n)
@@ -51,4 +52,10 @@ for k in range(n):
 		break
 m=t2*(h^-k)
 ```
+Lúc này chỉ cần tìm được rank() của m là sẽ tìm lại được flag.
 
+Mình loay hoay tìm xem có hàm nào trong sage có thể tìm được rank của m không, nhưng mà tìm hòai mà không ra được :(
+
+Sau 1 lúc tìm thì mình thấy [decoder.fr](https://www.dcode.fr/permutation-rank) có 1 đoạn hướng dẫn tìm rank như sau:
+
+!https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/scrambled-elgs/image1.png)
