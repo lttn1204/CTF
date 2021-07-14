@@ -89,7 +89,7 @@ Nếu chúng ta gửi 1 message lên để kí thì ta sẽ được **H(m),r,s*
 
 Quan sát kĩ mọi thứ có vẻ bình thường  nhưng ```k = (H(m) + pad + i) % q```  hơi khác so với 1 DSA thông thường.
 
-Thông thường ```k``` trong DSA phải thật sư ngẫu nhiên để tranh việc bị lộ private key ```x``` vì nếu có ```k``` thì sẽ dễ dàng tim được ```x```:
+Để an toàn thì  ```k```  phải thật sư ngẫu nhiên để tranh việc bị lộ private key ```x``` vì nếu có ```k``` thì sẽ dễ dàng tim được ```x```:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/redpwnCTF/Kepper_of_the_flag/image1.png)
 
