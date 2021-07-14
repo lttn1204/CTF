@@ -12,7 +12,7 @@ Decode it as a string and wrap in flag format.
 ```
 Thấy đây tham số của 1 ECC với 2 điểm P và Q.
 
-Vì **p** không lớn nên ta có thể dễ tính **d** = **discrete_log()** của sage.
+Vì order của đường cong không lớn và có thể factor ra nhiều số nguyên tố nhỏ hơn  nên ta có thể dễ tính **d** = **discrete_log()** của sage.
 
 Nhưng khi tạo các điểm thì:
 
