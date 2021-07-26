@@ -1,6 +1,6 @@
 # Challenge
-Đề bài cho 1 sever tính discrete log với mod cho trước cho phép chung ta nhập base và number cùng với flag được encrypt  RSA mới mod cùng với mod củng với số mũ là
-65537
+Đề bài cho 1 sever tính discrete log với mod cho trước cho phép chung ta nhập base và number cùng với flag được encrypt  RSA với số mũ là
+65537 và mobằng với mod của discrete log
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/1.png)
 
