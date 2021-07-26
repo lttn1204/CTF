@@ -22,6 +22,6 @@ Lúc này mình gửi base là ```c1``` và number là ```m1``` lên dể server
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/5.png)
 
-Lúc này dễ dàng thấy ```x``` chính là giá trị ```d``` cần tìm để decrypt được c phía trên
+Lúc này dễ dàng thấy ```x``` chính là giá trị ```d``` cần tìm để decrypt được c phía trên , 
 
 [scrips](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/solve_discrete_log.py)
