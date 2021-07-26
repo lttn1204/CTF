@@ -14,7 +14,7 @@ Trong khi đó để decrypt được flag thì ta phải tìm ```d``` sao cho
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/3.png)
 
-Như vậy giả sử mình encrypt một giá trị khác đã biết trước bằng RSA (gọi là ```m1```) với số mũ là 65537 và mod vẫn là n như trên thì ta sẽ được ```c1``` sao cho 
+Như vậy giả sử mình encrypt một giá trị khác đã biết trước (chọn ngâu nhiên) bằng RSA (gọi là ```m1```) với số mũ là 65537 và mod vẫn là n như trên thì ta sẽ được ```c1``` sao cho 
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/4.png)
 
