@@ -2,6 +2,8 @@
 Đề bài cho 1 sever tính discrete log với mod cho trước cho phép chung ta nhập base và number cùng với flag được encrypt  RSA mới mod cùng với mod củng với số mũ là
 65537
 
+![](https://github.com/lttn1204/CTF/blob/main/2021/IJCTF/discrete_log/1.png)
+
 Mình tạm gọi mod là ```n``` và encrypt flag là ```c```
 
 Vậy mỗi khi ta nhập base và number để server tính discrete log thì server sẽ tính x sao cho
