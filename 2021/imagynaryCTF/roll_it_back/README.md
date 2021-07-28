@@ -38,10 +38,11 @@ for _ in range(421337):
 
 Ở đoạn tính ```flag``` ```or``` ```1<<419```  , vì flag đã mất 1 bit trước đó nên phép tính này đơn giản chỉ là thêm 1 bit ```1``` vào làm bit cao nhất của flag.
 
-Đến đây có thể dễ dàng thấy được quy luật của bài này: Mỗi lần lặp flag mất đi 1 bit và nếu tổng số bit 1 của flag&T là lẻ thì thêm ```1``` vào làm bit cao nhất,
+Đến đây có thể dễ dàng thấy được quy luật của bài này: Mỗi lần lặp flag mất đi 1 bit và nếu tổng số bit ```1``` của ```flag&T``` là lẻ thì thêm ```1``` vào làm bit cao nhất,
 ngược lại thì thêm ```0``` vào làm bit cao nhất.
 
 Lúc này mình có thể tìm tìm lai được flag ban đầu bằng cách dự đoán trước bit thấp nhất đã được bỏ đi ở mỗi lần lặp 
 rồi check lại điều kiên bằng cách tính tổng số bit 1 của ```flag&T```. Nếu bit cao nhất của flag đang là 1 thì kết quả phải ra là số lẻ, ngược lại thì kết quả phải 
 là chẵn và bỏ đi bit đầu tiên của flag. Cứ làm như thế đến khi đủ số lần lăp là tìm lại được flag ban đầu
+
 [full_script](https://github.com/lttn1204/CTF/blob/main/2021/imagynaryCTF/roll_it_back/solve.py)
