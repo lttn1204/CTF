@@ -25,8 +25,10 @@ print(f"{flag = }")
 # flag = 2535320453775772016257932121117911974157173123778528757795027065121941155726429313911545470529920091870489045401698656195217643
 ###
 ```
-Nhìn vào đoạn đầu 1 xíu thì mình thấy code khá là loằng ngoằng với biến T được tạo từ 2 hàm ```x()``` và ```t()```. Thật ra mình không cần quan tâm đến 2 hàm này lắm
-vì các tham số  để tính T đều đã biết trước. Chỉ cần copy lại là có thể tính được T. Mình tính ra  T là : ```136085``` và bài cũng cho sẵn flag.bit_length()=420
+Nhìn vào đoạn đầu 1 xíu thì mình thấy code khá là loằng ngoằng với biến T được tạo từ 2 hàm ```x()``` và ```t()```. Thật ra mình không cần quan tâm đến 2 hàm này lắmvì các tham số  để tính T đều đã biết trước. Chỉ cần copy lại là có thể tính được T. 
+
+Mình tính ra  T là : ```136085``` và bài cũng cho sẵn flag.bit_length()=420
+
 Tiếp theo ta cần quan tâm đến đoạn: 
 ```py
 for _ in range(421337):
