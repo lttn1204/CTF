@@ -27,7 +27,7 @@ print(f"{flag = }")
 ```
 Nhìn vào đoạn đầu 1 xíu thì mình thấy code khá là loằng ngoằng với biến T được tạo từ 2 hàm ```x()``` và ```t()```. Thật ra mình không cần quan tâm đến 2 hàm này lắmvì các tham số  để tính T đều đã biết trước. Chỉ cần copy lại là có thể tính được T. 
 
-Mình tính ra  T là : ```136085``` và bài cũng cho sẵn flag.bit_length()=420
+Mình tính ra  T là : ```136085``` và bài cũng cho sẵn flag.bit_length()=```420```
 
 Tiếp theo ta cần quan tâm đến đoạn: 
 ```py
