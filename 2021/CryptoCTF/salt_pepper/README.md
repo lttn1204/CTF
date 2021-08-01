@@ -1,5 +1,5 @@
 # Challenge
-```
+```p
 #!/usr/bin/env python3
 
 from hashlib import md5, sha1
@@ -83,6 +83,7 @@ Vậy user name ta cần gửi là new string
 Ta tiếp tục attack đến sha1
 
 Vì công thức ```auth_check``` của server là sha1(pepper + password + md5(salt + username) nên phần append ta phải nhập P4s5W0rd + md5 vừa tìm được ở trên 
+
 ![](https://github.com/lttn1204/CTF/blob/main/2021/CryptoCTF/salt_pepper/sha1.png)
 
 Vay ta thấy sha1(pepper+ newstring)=83875efbe020ced3e2c5ecc908edc98481eba47f và đây cũng sẽ là giá trị hash mà ta gui lên server.
