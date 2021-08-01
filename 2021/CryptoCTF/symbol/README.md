@@ -1,4 +1,4 @@
-[!](https://github.com/lttn1204/CTF/blob/main/2021/CryptoCTF/symbol/Symbols.png)
+![](https://github.com/lttn1204/CTF/blob/main/2021/CryptoCTF/symbol/Symbols.png)
 
 Ta dễ dàng thấy đây là 1 dãy các kí hiệu toán học được đại diện cho các kí tự của flag 
 
