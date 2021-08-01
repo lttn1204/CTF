@@ -73,9 +73,9 @@ Khi ta nc vào server có 2 option là ```[G]et the encrypted flag``` và ```[T]
 
 ```[T]est the encryption``` thì server yêu cầu ta nhập 32 bytes message và trả về:
 
-      * ```key``` dùng để mã hóa nhưng mất đi 2 bytes cuối
+      * keydùng để mã hóa nhưng mất đi 2 bytes cuối
       
-      * ```encrypt``` của 32 bytes ta nhập nhưng chỉ được block cuối và 1 số bytes của block đầu tiên
+      * encrypt của 32 bytes ta nhập nhưng chỉ được block cuối và 1 số bytes của block đầu tiên
 Và 1 điều lưu ý nữa là ```key``` và ```iv``` mỗi lần nc là không đổi
 
 Giả sử bây giờ mình gửi lên server 2 block 1 block 16 bytes ```a``` và 1 block 16 bytes ```b``` và nhận được 2 block encrypt là block1 và ```block2```
