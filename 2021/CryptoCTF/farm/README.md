@@ -31,7 +31,7 @@ key = keygen(14) # I think 64**14 > 2**64 is not brute-forcible :P
 
 enc = encrypt(flag, key)
 print(f'enc = {enc}')
-'''
+```
 
 Để tạo key thì đầu tiên chương trình lấy ngẫu nhiên l phần tư trong ```GF(64)``` và nhân tất cả chúng lại với nhau được 1 key, cuồi cùng lấy key = key^5 +key^3 +key^2 +1
 
