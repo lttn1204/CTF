@@ -1,5 +1,5 @@
 # Challenge
-```p
+```py
 #!/usr/bin/env python3
 
 from hashlib import md5, sha1
