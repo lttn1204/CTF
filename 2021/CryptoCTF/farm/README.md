@@ -33,7 +33,7 @@ enc = encrypt(flag, key)
 print(f'enc = {enc}')
 ```
 
-Để tạo key thì đầu tiên chương trình lấy ngẫu nhiên l phần tư trong ```GF(64)``` và nhân tất cả chúng lại với nhau được 1 key, cuồi cùng lấy key = key^5 +key^3 +key^2 +1
+Để tạo key thì đầu tiên chương trình lấy ngẫu nhiên l phần tư trong ```GF(64)``` và nhân tất cả chúng lại với nhau được 1 key, cuồi cùng lấy ```key = key^5 +key^3 +key^2 +1```
 
 Do tính chất khép kín nên khi trải qua nhìu bước làm phía trên thì key cũng sẽ chỉ  nằm trong GF(64) -> Vậy chỉ chó 64 key tất cả có thẻ gen ra nên ta có thể brute force để tìm 
 
