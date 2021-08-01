@@ -87,4 +87,4 @@ block thứ nhất của ```enc_flag``` xem cái nào có khả năng là ```fla
 
 Tìm lại iv cũng tương tự bằng cách decrypt block1 và xor lại với 16 bytes 'a' là ta sẽ tìm được ```v```.
 
-Có ```iv``` và ```key```, giải mã v
+Có ```iv``` và ```key```, giải mã 
