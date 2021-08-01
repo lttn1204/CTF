@@ -81,10 +81,10 @@ Và 1 điều lưu ý nữa là ```key``` và ```iv``` mỗi lần nc là không
 Giả sử bây giờ mình gửi lên server 2 block 1 block 16 bytes ```a``` và 1 block 16 bytes ```b``` và nhận được 2 block encrypt là block1 và ```block2```
 
 Vì key chỉ bị mất đi 2 bytes nên đầu tiên mình sẽ brute force để tìm lại 2 bytes. Bằng cách dùng key này để decrypt block thứ 2 của ```enc_flag``` rồi xor lại với e
-block thứ nhất của ```enc_flag``` xem cái nào có khả năng là ```flag``` ( kêt thúc bằng "}" chẵn hạn :3 ) , bằng cách này thì mình có thể tìm được block 2 của flag và ```key```
+block thứ nhất của ```enc_flag``` xem cái nào có khả năng là ```flag``` ( kêt thúc bằng "}" chẳn hạn :3 ) , bằng cách này thì mình có thể tìm được block 2 của flag và ```key```
 
-Để tìm iv thì mình phải tìm được ```block1```. Cũng đơn giản thôi vì đã có key và block 2 vày key ta chỉ cần decrypt ```block2``` và xor lại với 16 bytes 'b'
+Để tìm iv thì mình phải tìm được ```block1```. Cũng đơn giản thôi vì đã có key và block 2 vày key ta chỉ cần decrypt ```block2``` và xor lại với 16 bytes ```b```
 
-Tìm lại iv cũng tương tự bằng cách decrypt block1 và xor lại với 16 bytes 'a' là ta sẽ tìm được ```v```.
+Tìm lại iv cũng tương tự bằng cách decrypt block1 và xor lại với 16 bytes ```a``` là ta sẽ tìm được ```v```.
 
 Có ```iv``` và ```key```, giải mã 
