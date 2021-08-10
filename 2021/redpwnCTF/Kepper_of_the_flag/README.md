@@ -95,7 +95,7 @@ Quan sát kĩ mọi thứ có vẻ bình thường  nhưng ```k = (H(m) + pad + 
 
 Nếu chúng ta có được ```x``` thì dễ dàng kí được message ```b'give flag'```
 
-Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng **k** được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên mình sẽ tìm cách nhập 2 message sao cho Sha1 của chúng giống nhau. Điều này hoàn toàn có thể vì Sha1 có collision và mình tìm thấy ở [shatted.io](https://shattered.io/) 2 file pdf có cùng sha1. Download file về và dùng nó để làm 2 message gửi lên server :)
+Quay lại nhìn vào Server, Server yêu cầu nhập 2 message khác nhau nhưng **k** được tính bằng cách ```Sha1(message) + pad + i```. Do pad là không đổi mỗi lần connect nên mình sẽ tìm cách nhập 2 message sao cho Sha1 của chúng giống nhau. Điều này hoàn toàn có thể vì Sha1 có collision. Mình google thì tìm thấy ở [shatted.io](https://shattered.io/) 2 file pdf có cùng sha1. Download file về và dùng nó để làm 2 message gửi lên server :)
 Lúc này ta thấy **H(message1) = H(message2) = > k1+1=k2**
 
 Ta sẽ có: 
