@@ -389,7 +389,7 @@ Còn các bước còn lại không khác gì
 Ý tưởng chính để giải:
 * Server có ta input message để sign DSA
 * Nếu như ta có thể nhập 1 collison sha1 thì k ở lần nhập sau sẽ bằng k trước đó + 1
-* Lợi dụng điểm yếu này để tìm lại x và kí được b'give flag'
+* Lợi dụng điểm yếu này để tìm lại private key và kí được b'give flag'
 
 Mình đã có write up  và phân tích bài ```keeper of the flag``` ở [đây](https://github.com/lttn1204/CTF/tree/main/2021/redpwnCTF/Kepper_of_the_flag) mọi người có thể đọc thêm nha
 
