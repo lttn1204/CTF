@@ -45,4 +45,24 @@ Tóm tắc 1 chút:
 
 * Server cho ta 2 lần input, mỗi lần input 1 số ```x``` nào đó, server sẽ trả về ```flag^(a*x)  mod b```
 
+* Nếu ta input 1 số ```x``` nào đó để    ```flag^(a*x)  mod b == 1 ``` thì sẽ có flag 
 
+Dễ thấy mục tiêu của chúng ta là tìm ra ```phi(b)```, mà muốn tìm ra ```phi(b)``` thì phải tìm ra được các số nguyên tố nhỏ của b.
+
+Ta thấy phép tính ```flag^(a*x)  mod b``` tương đương với ```(flag^a)^x mod b```. Vậy giả sử mình gọi ```flag^a mod b``` là ```c``` input số ```2``` và mình được ```c1```.
+
+Lúc này  ```c^2 mod b == c1```  => ```c^2= k*b + c2``` => ```k*b =  c^2 - c1```
+
+Minh factor ```k*b``` tìm lại được các số nguyên tố gen ra b , tính ```Euler_phi(b)``` và gửi lên server để lấy flag. 
+
+### Note:
+Thật ra cách của mình khá là sida và factor hơi lâu, để có thể factor nhanh hơn thì có thể làm như sau:
+* gửi 2 lên server để nhận lại c1
+* gửi 3 lên server để nhận lại c2
+* luc này b= gcd(c^2 - c1,c^3 - c2) 
+
+Factor b lúc này sẽ nhanh hơn rất nhìu, vì giá trị lúc này là chính là ```b``` chứ không phải là ```kb``` nữa.
+Lúc này dễ dàng tính flag bằng cách ```c ^ inverse(a,phi) mod b```. Minh chỉ tập trung vào việc input lần đâu tim được b là quên mất cách này (:sad)
+
+
+# 
