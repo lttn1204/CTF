@@ -38,8 +38,11 @@ if __name__ == "__main__":
 	except Exception:
 		print("oopsie")
 ```
-Tóm tắc 1 chút thì đề gen 1 số nguyên tố a và 1 số b có thể factor thành nhiều các số nguyên tố nhỏ.
+Tóm tắc 1 chút:
+* Đề gen 1 số nguyên tố a và 1 số b có thể factor thành nhiều các số nguyên tố nhỏ.
 
- * Sau đó server cho ta biết ```flag^a mod b``` và (thật ra là flag+token_bytes nhưng nó không quan trọng lắm) và giá trị a
+ * Ta biết ```flag^a mod b``` và (thật ra là flag+token_bytes nhưng nó không quan trọng lắm) và giá trị a
 
 * Server cho ta 2 lần input, mỗi lần input 1 số ```x``` nào đó, server sẽ trả về ```flag^(a*x)  mod b```
+
+
