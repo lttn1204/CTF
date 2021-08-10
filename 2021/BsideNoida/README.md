@@ -192,7 +192,7 @@ Vậy thì giả sử chung ta đang encrypt thằng ```secret_message``` thì t
 
 Vậy nếu tiếp theo quá trinh encrypt ```secret_message``` thì block 3 sẽ được xor với ```enc``` rồi encrypt.
 
-Quay lại, bây giờ nếu ta gửi block 3 lên server thì sever sẽ thực hiện: encrypt(block3 xor IV).
+Quay lại, bây giờ nếu ta gửi block 3 lên server thì sever sẽ thực hiện: ```encrypt(block3 xor IV)```.
 
 Vậy để control được thành ```encrypt(block3 xor enc)``` thì đơn giản ta chỉ cần lấy block3 xor với enc rồi xor lại tiếp với IV.
 
