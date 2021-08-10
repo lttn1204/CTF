@@ -62,7 +62,58 @@ Thật ra cách của mình khá là sida và factor hơi lâu, để có thể 
 * luc này b= gcd(c^2 - c1,c^3 - c2) 
 
 Factor b lúc này sẽ nhanh hơn rất nhìu, vì giá trị lúc này là chính là ```b``` chứ không phải là ```kb``` nữa.
-Lúc này dễ dàng tính flag bằng cách ```c ^ inverse(a,phi) mod b```. Minh chỉ tập trung vào việc input lần đâu tim được b là quên mất cách này (:sad)
+Lúc này dễ dàng tính flag bằng cách ```c ^ inverse(a,phi) mod b```. Lúc làm minh chỉ tập trung vào việc input lần đâu tim được b là quên mất cách này (:sad)
 
 
-# 
+# Xoro
+```py
+#!/usr/bin/env python3
+import os
+
+FLAG = open('flag.txt','rb').read()
+
+def xor(a, b):
+    return bytes([i^j for i,j in zip(a,b)])
+
+def pad(text, size):
+    return text*(size//len(text)) + text[:size%len(text)]
+
+def encrypt(data, key):
+    keystream = pad(key, len(data))
+    encrypted = xor(keystream, data)
+    return encrypted.hex()
+
+
+if __name__ == "__main__":
+    print("\n===== WELCOME TO OUR ENCRYPTION SERVICE =====\n")
+    try:
+        key = os.urandom(32)
+        pt = input('[plaintext (hex)]>  ').strip()
+        ct = encrypt(bytes.fromhex(pt) + FLAG, key)
+        print("[ciphertext (hex)]>", ct)
+        print("See ya ;)")
+    except Exception as e:
+        print(":( Oops!", e)
+        print("Terminating Session!")
+```
+Phân tích 1 chút: 
+* Mỗi lần connect server sẽ gen ra 1 key, cho phép nhập input và encrypt bằng cách ```(input+flag) xor key```
+* Key có 32 bytes
+* hàm pad đơn giản là lăp lại chuỗi cho đến khi đủ độ dài cần thiết
+* Nhập thử 1 kí tự để check thì thấy len(flag)=39
+
+Lúc này minh sẽ lợi dụng vào hàm pad để có thể leak được từng kí tự của flag.
+
+Vì key chỉ có 32 kí tự nên dù input bao nhìu thì chắc chắn key sẽ pad, lúc này key sẽ được lặp lại. Vậy thì kí tự thứ 1 và kí tự thứ 33 sẽ được xor chung 1 key. 
+
+Vậy nếu ta input 32 kí tự thì kí tự đầu tiên của flag sẽ được xor cùng với kí tự đầu tiên của chúng ta.
+
+Mà lúc này ```input[0] xor key[0] = a ```; ```flag[0] xor key[0] = b``` => ```flag[0]= a xor b xor input[0]```
+
+Ta chỉ việc đơn giản lấy kí tự đầu tiên xor với kí tự thú 32 và xor với input đầu tiên la tìm được giá trị đầu tiên của flag.
+
+Tiếp theo cứ giảm input xuống 31 thì sẽ tìm được kí tự thứ 2 .......
+
+Dễ dàng tim lại 32 kí tự đầu của flag, mà có 32 kí tự của flag thì đồng nghĩa với việc có luôn key, 7 kí tự còn lại của flag cũng dễ dàng tìm. 
+
+[solution](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/resource/solve_xor.py)  của mình 
