@@ -117,3 +117,67 @@ Tiếp theo cứ giảm input xuống 31 thì sẽ tìm được kí tự thứ 
 Dễ dàng tim lại 32 kí tự đầu của flag, mà có 32 kí tự của flag thì đồng nghĩa với việc có luôn key, 7 kí tự còn lại của flag cũng dễ dàng tìm. 
 
 [solution](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/resource/solve_xor.py)  của mình 
+
+
+# MACAW
+```py 
+#!/usr/bin/env python3
+from topsecrets import iv, key, secret_msg, secret_tag, FLAG
+from Crypto.Cipher import AES
+
+iv = bytes.fromhex(iv)
+
+menu = """
+/===== MENU =====\\
+|                |
+|  [M] MAC Gen   |
+|  [A] AUTH      |
+|                |
+\================/
+"""
+
+def MAC(data):    
+    assert len(data) % 16 == 0, "Invalid Input"
+    assert data != secret_msg, "Not Allowed!!!"
+    
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    tag = cipher.encrypt(data)[-16:]
+    return tag.hex()
+
+def AUTH(tag):
+    if tag == secret_tag:
+        print("[-] Successfully Verified!\n[-] Details:", FLAG)
+    else:
+        print("[-] Verification Flaied !!!")
+
+if __name__ == "__main__":
+    print(secret_msg)
+    try:
+        for _ in range(3):
+            print(menu)
+            ch = input("[?] Choice: ").strip().upper()
+            if ch == 'M':
+                data = input("[+] Enter plaintext(hex): ").strip()
+                tag = MAC(bytes.fromhex(data))
+                print("[-] Generated tag:", tag)
+                print("[-] iv:", iv.hex())
+            elif ch == 'A':
+                tag = input("[+] Enter your tag to verify: ").strip()
+                AUTH(tag)
+            else:
+                print("[!] Invalid Choice")
+                exit()
+    except Exception as e:
+        print(":( Oops!", e)
+        print("Terminating Session!")
+```
+Tóm tắc: 
+* Đề cung cấp 1 server encrypt AES CBC và 1 secret_message
+* Ta không được input secret_message để server encrypt
+* Nếu ta có được encrypt của secret_message thì có flag
+* Ta chỉ được input cho server encrypt 2 lần và 1 lần để verify
+* Key và IV được import từ 1 file khác -> key và IV không đổi -> mỗi lần connect đêu dùng chung key và IV -> không bị giới hạn bởi 2 lần input.
+
+Encrypt AES-CBC được thực hiện như sau :
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/image/CBC.png)
