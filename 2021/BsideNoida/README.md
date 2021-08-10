@@ -194,9 +194,9 @@ Vậy nếu tiếp theo quá trinh encrypt ```secret_message``` thì block 3 s�
 
 Quay lại, bây giờ nếu ta gửi block 3 lên server thì sever sẽ thực hiện: encrypt(block3 xor IV).
 
-Vậy để control được thành encrypt(block3 xor enc) thì đơn giản ta chỉ cần lấy block3 xor với enc rồi xor lại tiếp với IV.
+Vậy để control được thành ```encrypt(block3 xor enc)``` thì đơn giản ta chỉ cần lấy block3 xor với enc rồi xor lại tiếp với IV.
 
-Lúc này server sẽ thực hiện encrypt(block3 xor enc xor IV xor IV) = encrypt(block3 xor enc). Giá trị server trả về lúc này chính là encrypt của ```secret_msg``` cần tìm. 
+Lúc này server sẽ thực hiện ```encrypt(block3 xor enc xor IV xor IV)``` = ```encrypt(block3 xor enc)```. Giá trị server trả về lúc này chính là encrypt của ```secret_msg``` cần tìm. 
 
 Nếu làm theo cách này thì chỉ cần 2 lần input là đủ và ở mỗi lần connect đổi IV, key, s thì vẫn có thể giải được.
 
