@@ -181,3 +181,198 @@ Tóm tắc:
 Encrypt AES-CBC được thực hiện như sau :
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/image/CBC.png)
+
+Trong CBC thì mỗi block trước khi encrypt sẽ được ```xor``` với ciphertext block trước đó, tiêng block đầu tiên thì ```xor``` với IV
+
+TA thấy ```secret_message``` là ```Welcome to BSidesNoida!! Follow us on Twitter...``` có 48 bytes vừa khít với hình luôn :v 
+
+Cách làm của mình là ban đầu sẽ input 2 block đầu của ```secret_message``` lúc này mình nhận về 1 giá trị gọi là ```enc```
+
+Vậy thì giả sử chung ta đang encrypt thằng ```secret_message``` thì thằng ```enc``` là kết quả ở chổ mình đánh dấu X màu đỏ (trên hình ý)
+
+Vậy nếu tiếp theo quá trinh encrypt ```secret_message``` thì block 3 sẽ được xor với ```enc``` rồi encrypt.
+
+Quay lại, bây giờ nếu ta gửi block 3 lên server thì sever sẽ thực hiện: encrypt(block3 xor IV).
+
+Vậy để control được thành encrypt(block3 xor enc) thì đơn giản ta chỉ cần lấy block3 xor với enc rồi xor lại tiếp với IV.
+
+Lúc này server sẽ thực hiện encrypt(block3 xor enc xor IV xor IV) = encrypt(block3 xor enc). Giá trị server trả về lúc này chính là encrypt của ```secret_msg``` cần tìm. 
+
+Nếu làm theo cách này thì chỉ cần 2 lần input là đủ và ở mỗi lần connect đổi IV, key, s thì vẫn có thể giải được.
+
+# MACAW_Revenge
+```py 
+#!/usr/bin/env python3
+from Crypto.Cipher import AES
+import os
+
+with open('flag.txt') as f:
+    FLAG = f.read()
+
+
+menu = """
+/===== MENU =====\\
+|                |
+|  [M] MAC Gen   |
+|  [A] AUTH      |
+|                |
+\================/
+"""
+
+def MAC(data, check=False):    
+    assert len(data) % 16 == 0, "Invalid Input"
+    
+    if check:
+        assert data != secret_msg, "Not Allowed!!!"
+    
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    tag = cipher.encrypt(data)[-16:]
+    return tag.hex()
+
+def AUTH(tag):
+    if tag == secret_tag:
+        print("[-] Successfully Verified!\n[-] Details:", FLAG)
+    else:
+        print("[-] Verification Flaied !!!")
+
+if __name__ == "__main__":
+    iv = os.urandom(16)
+    key = os.urandom(16)
+    secret_msg = os.urandom(48)
+    secret_tag = MAC(secret_msg)
+
+    print(f"[+] Forbidden msg: {secret_msg.hex()}")
+    try:
+        for _ in range(3):
+            print(menu)
+            ch = input("[?] Choice: ").strip().upper()
+            if ch == 'M':
+                data = input("[+] Enter plaintext(hex): ").strip()
+                tag = MAC(bytes.fromhex(data), check=True)
+                print("[-] Generated tag:", tag)
+                print("[-] iv:", iv.hex())
+            elif ch == 'A':
+                tag = input("[+] Enter your tag to verify: ").strip()
+                AUTH(tag)
+            else:
+                print("[!] Invalid Choice")
+                exit()
+    except Exception as e:
+        print(":( Oops!", e)
+        print("Terminating Session!")
+```
+Bài này y như bài MACAW trước, chỉ đơn giản là mỗi lần coonect thì key,iv và secret_msg đều đổi.
+
+Như đã phân tích thì cách làm ở trên cũng work với bài này luôn. Nên vừa ra chall mình solve liền :hihi
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/image/1.jpg)
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/image/2.jpg)
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/image/3.jpg)
+
+Kỉ niệm lần đầu được organizer hỏi thăm :hihi
+
+Dù bài này không có gì khó nhưng cũng là 1 kỉ niệm vui với mình. 
+
+
+# kotf_return
+```py
+from hashlib import sha1
+from random import *
+from sys import exit
+from os import urandom
+from Crypto.PublicKey import DSA
+from Crypto.Util.number import *
+
+rot = randint(2, 2**160 - 1)
+chop = getPrime(159)
+
+
+def message_hash(x):
+	return bytes_to_long(sha1(x).digest())
+
+
+def nonce(s, padding, i, q):
+	return (pow(message_hash(s), rot, chop) + padding + i)%q
+
+
+def verify(r, s, m):
+	if not (0 < r and r < q and 0 < s and s < q):
+		return False
+	w = pow(s, q - 2, q)
+	u1 = (message_hash(m) * w) % q
+	u2 = (r * w) % q
+	v = ((pow(g, u1, p) * pow(y, u2, p)) % p) % q
+	return v == r
+
+def pow_solve():
+	pow_nonce = urandom(4)
+	print(f"Solve PoW for {pow_nonce.hex()}")
+	inp = bytes.fromhex(input())
+	if sha1(pow_nonce + inp).hexdigest().endswith('000000'):
+		print("Correct PoW. Continue")
+		return True
+	print("Incorrect PoW. Abort")
+	return False
+
+
+try:
+	if not pow_solve():
+		exit()
+	L, N = 1024, 160
+	dsakey = DSA.generate(1024)
+	p = dsakey.p
+	q = dsakey.q
+	h = randint(2, p - 2)
+
+	# sanity check
+	g = pow(h, (p - 1) // q, p)
+	if g == 1:
+		print("oopsie")
+		exit(1)
+
+	x = randint(1, q - 1)
+	y = pow(g, x, p)
+
+	print(f"<p={p}, q={q}, g={g}, y={y}>")
+
+	pad = randint(1, 2**160)
+	signed = []
+	for i in range(2):
+		print("what would you like me to sign? in hex, please")
+		m = bytes.fromhex(input())
+		if m == b'give flag' or m == b'give me all your money':
+			print("haha nice try...")
+			exit()
+		if m in signed:
+			print("i already signed that!")
+			exit()
+		signed.append(m)
+		# nonce generation remains the same
+		k = nonce(m, pad, i, q)
+		if k < 1:
+			exit()
+		r = pow(g, k, p) % q
+		if r == 0:
+			exit()
+		s = (pow(k, q - 2, q) * (message_hash(m) + x * r)) % q
+		if s == 0:
+			exit()
+		# No hash leak for you this time
+		print(f"<r={r}, s={s}>")
+
+	print("ok im done for now. You visit the flag keeper...")
+	print("for flag, you must bring me signed message for 'give flag'")
+
+	r1 = int(input())
+	s1 = int(input())
+	if verify(r1, s1, b"give flag"):
+		print(open("flag.txt").read())
+	else:
+		print("Never gonna give you up")
+except:
+	print("Never gonna let you down")
+```
+
+
