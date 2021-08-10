@@ -393,4 +393,6 @@ Còn các bước còn lại không khác gì
 
 Mình đã có write up  và phân tích bài ```keeper of the flag``` ở [đây](https://github.com/lttn1204/CTF/tree/main/2021/redpwnCTF/Kepper_of_the_flag) mọi người có thể đọc để hiêu thêm nhé
 
+![script](https://github.com/lttn1204/CTF/blob/main/2021/BsideNoida/resource/solve_kotf_return.py) mình để ở đây
+
 # Thanks for reading and have a nice day!!!
