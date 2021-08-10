@@ -273,7 +273,7 @@ Như đã phân tích thì cách làm ở trên cũng work với bài này luôn
 
 Kỉ niệm lần đầu được organizer hỏi thăm :hihi
 
-Dù bài này không có gì khó nhưng cũng là 1 kỉ niệm vui với mình. 
+Dù bài này không có gì khó nhưng cũng là 1 kỉ niệm vui với mình.(Vui thiệt luôn á :joy: ) 
 
 
 # kotf_return
@@ -374,5 +374,23 @@ try:
 except:
 	print("Never gonna let you down")
 ```
+Bài này giống đến hơn 90% bài ``keeper of the flag`` ở ```redpwn CTF```. Chỉ khác ở việc ban đầu phải vượt qua ```pow_solve```.
+Ở bước này chỉ cần brute force là có thể vượt qua được:
+```py
+def solve_for_pow(tmp):
+	while True:
+		t=os.urandom(5)
+		s=sha1(tmp + t).hexdigest()
+		if s.endswith('000000'):
+			return t.hex()
+```
+Còn các bước còn lại không khác gì
 
+Ý tưởng chính để giải:
+* Server có ta input message để sign DSA
+* Nếu như ta có thể nhập 1 collison sha1 thì k ở lần nhập sau sẽ bằng k trước đó + 1
+* Lợi dụng điểm yếu này để tìm lại x và kí được b'give flag'
 
+Mình đã có write up  và phân tích bài ```keeper of the flag``` ở [đây](https://github.com/lttn1204/CTF/tree/main/2021/redpwnCTF/Kepper_of_the_flag) mọi người có thể đọc để hiêu thêm nhé
+
+# Thanks for reading and have a nice day!!!
