@@ -215,7 +215,7 @@ if __name__ == '__main__':
     assert FLAG == decrypt(cip, pvkey)
     pickle.dump({'cip': cip, 'pbkey': pbkey}, open('enc.pickle', 'wb'))
 ```
-Đọc code thì thấy đây là 1 bài knapsack cryptosytem.
+Đọc code thì thấy đây là 1 bài [knapsack cryptosytem](https://en.wikipedia.org/wiki/Merkle%E2%80%93Hellman_knapsack_cryptosystem).
 
 Đầu tiên thì mình nghĩ đến dùng lattice để giải bài này (Mình đọc tài liệu thấy như vậy chứ cũng chưa hiểu được kĩ thuật này :))  )
 
