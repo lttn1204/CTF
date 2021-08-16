@@ -1,7 +1,6 @@
 from Crypto.Cipher import AES
 import gmpy2
 import hashlib
-from right_now_generator import RNG
 from Crypto.Util.number import *
 import  pickle
 class RNG():
