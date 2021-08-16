@@ -161,4 +161,72 @@ Có old_seed, bỏ vào RNG để gen ra key rồi decrypt là có được flag
 [Solution](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/resource/solve_right_now_generator.py) của mình 
 
 
+#Lost_Baggage
+## Challenge
+
+```py
+#!/usr/bin/python3
+
+from random import getrandbits as rand
+from gmpy2 import next_prime, invert
+import pickle
+
+FLAG = open('flag.txt', 'rb').read()
+BUF = 16
+
+def encrypt(msg, key):
+	msg = format(int(msg.hex(), 16), f'0{len(msg)*8}b')[::-1]
+	assert len(msg) == len(key)
+	return sum([k if m=='1' else 0 for m, k in zip(msg, key)])
+
+def decrypt(ct, pv):
+	b, r, q = pv
+	ct = (invert(r, q)*ct)%q
+	msg = ''
+	for i in b[::-1]:
+		if ct >= i:
+			msg += '1'
+			ct -= i
+		else:
+			msg += '0'
+	return bytes.fromhex(hex(int(msg, 2))[2:])
+
+def gen_inc_list(size, tmp=5):
+	b = [next_prime(tmp+rand(BUF))]
+	while len(b)!=size:
+		val = rand(BUF)
+		while tmp<sum(b)+val:
+			tmp = next_prime(tmp<<1)
+		b += [tmp]
+	return list(map(int, b))
+
+def gen_key(size):
+	b = gen_inc_list(size)
+	q = b[-1]
+	for i in range(rand(BUF//2)):Đọc
+		q = int(next_prime(q<<1))
+	r = b[-1]+rand(BUF<<3)
+	pb = [(r*i)%q for i in b]
+	return (b, r, q), pb
+
+if __name__ == '__main__':
+    pvkey, pbkey = gen_key(len(FLAG) * 8)
+    cip = encrypt(FLAG, pbkey)
+    assert FLAG == decrypt(cip, pvkey)
+    pickle.dump({'cip': cip, 'pbkey': pbkey}, open('enc.pickle', 'wb'))
+```
+Đọc code thì thấy đây là 1 bài knapsack cryptosytem.
+
+Đầu tiên thì mình nghĩ đến dùng lattice để giải bài này (Mình đọc tài liệu thấy như vậy chứ cũng chưa hiểu được kĩ thuật này :))  )
+
+Sau 1 hồi mò hết các writeup và làm theo vẫn không ra :(  và mình cũng k hiểu tại sao :( thì nhìn lại thằng pubkey thấy nó là 1 mảng supper increasing ( phần tử thứ i lớn hơn tổng tất cả các phần tử trước đó ) 
+
+Vậy thì ta chỉ việc đơn giản decrypt với việc coi nó như 1 thằng private key là được
+
+Mình thử và ra flag :)) 
+
+script mình để ở [đây](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/resource/solve_lost_baggage.py)
+
+
+
 
