@@ -124,12 +124,12 @@ def next(self):
  
  Giã sử từ 1 seed ta RNG gen ra 64 số (tạm gọi là ```leak```),  ta thấy với mỗi cặp seed[i] và seed[i+1] (i chẵn) thì:
  
- ![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct3.png)
+ ![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct2.3.png)
     
 Biến đổi 1 chút thì ta được:
 
-![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct3.png)
-
+![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct2.2.png)
+    
 Vậy tù 64 số mà đề cho ta dẽ tìm lại được seed của 64 số ấy. Việc còn lại là phải tìm được seed của 64 số dùng để encrypt flag
 
 Tiếp theo ta quan sát hàm swap():
