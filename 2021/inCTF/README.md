@@ -107,7 +107,7 @@ if __name__ == '__main__':
  Tóm tắc 1 chút:
  - Đề define 1 class RNG và gen ra 128 số. Dùng 64 số đầu làm key để encrypt AES-CBC flag , 64 số còn lại đề cho ta biết
  - Seed là 1 mảng 64 số, với 1 seed thì RNG chỉ gen ra được 64 số qua hàm ```next()``` và sau đó seed sẽ đổi seed khác thông qua hàm ```wrap()```
- - Flow của bài ```Gen seed đầu tiên``` -> ```Gen ra 64 số để encrypt flag``` -> ```wrap() để đối seed``` -> ```Gen ra 64 số cho chúng ta biết```
+ - Flow của RNG ```Gen seed đầu tiên``` -> ```Gen ra 64 số để encrypt flag``` -> ```wrap() để đối seed``` -> ```Gen ra 64 số cho chúng ta biết```
 
 Quan sát hàm next:
 ```py
