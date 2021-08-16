@@ -1,7 +1,6 @@
 import os, hashlib, pickle
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-#inctf{w0w_DH_15_5o_c00l!_3c9cdad74c27d1fc}
 key = os.urandom(4)
 FLAG = open('flag.txt', 'rb').read()
 p = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
