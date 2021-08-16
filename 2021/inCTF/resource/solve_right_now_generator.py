@@ -1,6 +1,7 @@
 from Crypto.Cipher import AES
 import gmpy2
 import hashlib
+from right_now_generator import RNG
 from Crypto.Util.number import *
 import  pickle
 class RNG():
@@ -44,23 +45,23 @@ with open('enc.pickle','rb') as f:
 	data=pickle.load(f)
 iv=bytes.fromhex(data['iv'])
 encrypted=bytes.fromhex(data['cip'])
-tmp=data['leak']
-leak=[]
-for i in range(0,len(tmp),16):
-	leak.append(int(tmp[i:i+16],16))
+leak=data['leak']
+enc=[]
+for i in range(0,len(leak),16):
+	enc.append(int(leak[i:i+16],16))
 #print(enc)
 pad = 0xDEADC0DE
 sze = 64
 n = int(gmpy2.next_prime(2**sze))
-def find_seed(leak):
+def find_seed(enc):
 	seed=[]
-	for i in range(0,len(leak),2):
-		a=(leak[i]+leak[i+1])%n
-		b=(leak[i+1]+a)%n
+	for i in range(0,len(enc),2):
+		a=(enc[i]+enc[i+1])%n
+		b=(enc[i+1]+a)%n
 		seed.append(a)
 		seed.append(b)
 	return seed
-seed=find_seed(leak)
+seed=find_seed(enc)
 #print(seed)
 old_seed=[1]*64
 for i in range(32,64):
