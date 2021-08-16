@@ -152,9 +152,9 @@ Vậy thì khi tính toán từ seed[0] -> seed[31] thì các gía trị cần �
 
 Nhưng khi tính toán từ seed[32] trở đi thì giá trị cần để tính toán là 2 giá trị seed[i] và seed[(32+i)%64] lúc này giá trị  seed[(32+i)%64] ta đã biết.
 
-Vậy thì lúc này từ seed ban đầu ta có thể dễ dàng tìm lại old_seed[32:64] qua công thức : ```old_seed[i] = seed[i] * inverse(seed[(32+i)%64]) ^ pad```
+Vậy thì lúc này từ seed ban đầu ta có thể dễ dàng tìm lại old_seed[32:64] qua công thức : ```old_seed[i] = (seed[i] * inverse(seed[(32+i)%64])) ^ pad```
 
-và cũng từ đây ta có thể tìm lại được toán bộ old_seed: ```old_seed[i] = seed[i] * inverse(old_seed[(32+i)%64]) ^ pad```
+và cũng từ đây ta có thể tìm lại được toán bộ old_seed: ```old_seed[i] = (seed[i] * inverse(old_seed[(32+i)%64])) ^ pad```
 
 Có old_seed, bỏ vào RNG để gen ra key rồi decrypt là có được flag.
 
