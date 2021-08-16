@@ -284,7 +284,7 @@ Mình nhân  G với 100000 nhưng chỉ có hơn 900 điểm mới được sin
 
 => Ta có thể brute force cả 2 key để tìm lại điểm SS để decrypt flag
 
-!https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/solve.png)
+![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/solve.png)
 
 Mình brute force khá lâu, chắc nhân phẩm dạo này hơi kém :((
 
