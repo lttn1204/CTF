@@ -161,7 +161,7 @@ Có old_seed, bỏ vào RNG để gen ra key rồi decrypt là có được flag
 [Solution](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/resource/solve_right_now_generator.py) của mình 
 
 
-#Lost_Baggage
+# Lost_Baggage
 ## Challenge
 
 ```py
@@ -228,7 +228,7 @@ Mình thử và ra flag :))
 script mình để ở [đây](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/resource/solve_lost_baggage.py)
 
 
-#Eazy_Xchange
+# Eazy_Xchange
 ## Challenge
 
 ```py
