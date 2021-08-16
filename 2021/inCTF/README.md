@@ -110,16 +110,53 @@ if __name__ == '__main__':
 Quan sát hàm next:
 ```py
 def next(self):
-		a, b, c, d = (self.seed[self.ctr^i] for i in range(4))
-		mod = self.mod
-		k = 1 if self.ctr%2 else 2
-		a, b, c, d = (k*a-b)%mod, (b-c)%mod, (c-d)%mod, (d-a)%mod
-		self.ctr += 1
-		if self.ctr==64:
-			self.wrap(pr=False)
-		return a
+	a, b, c, d = (self.seed[self.ctr^i] for i in range(4))
+	mod = self.mod
+	k = 1 if self.ctr%2 else 2
+	a, b, c, d = (k*a-b)%mod, (b-c)%mod, (c-d)%mod, (d-a)%mod
+	self.ctr += 1
+	if self.ctr==64:
+		self.wrap(pr=False)
+	return a
  ```
  
  Giã sử từ 1 seed ta RNG gen ra 64 số (tạm gọi là ```leak```),  ta thấy với mỗi cặp seed[i] và seed[i+1] (i chẵn) thì:
+ 
+ ![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct3.png)
     
-![] ( 
+Biến đổi 1 chút thì ta được:
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/image/ct3.png)
+
+Vậy tù 64 số mà đề cho ta dẽ tìm lại được seed của 64 số ấy. Việc còn lại là phải tìm được seed của 64 số dùng để encrypt flag
+
+Tiếp theo ta quan sát hàm swap():
+```py
+def wrap(self, pr=True):
+	hsze = self.sze//2
+	for i in range(self.sze):
+		r1 = self.seed[i]
+		r2 = self.seed[(i+hsze)%self.sze]
+		self.seed[i] = ((r1^self.pad)*r2)%self.mod
+	self.ctr = 0
+```
+Hàm này sẽ biến đổi từ 1 seed thành seed mới , vậy nếu làm ngược lại được hàm này thì từ seed ta mới tìm ra ở trên, ta có thể tìm lại seed trước của nó (mình tạm gọi ```old_seed```)
+
+Ta thấy hàm wrap() tính seed[i]  bằng cách lấy ```(seed[i] xor pad)* seed[(i+32)%64]```
+
+Nhưng hàm này lấy đầu vào của seed và cập nhật thẳng giá trị mới tìm được lên seed luôn.
+
+Vậy thì khi tính toán từ seed[0] -> seed[31] thì các gía trị cần để tính toán là 2 giá trị seed[i] và seed[(32+i)%64] của seed cũ(chưa biết 2 giá trị này).
+
+Nhưng khi tính toán từ seed[32] trở đi thì giá trị cần để tính toán là 2 giá trị seed[i] và seed[(32+i)%64] lúc này giá trị  seed[(32+i)%64] ta đã biết.
+
+Vậy thì lúc này từ seed ban đầu ta có thể dễ dàng tìm lại old_seed[32:64] qua công thức : ```old_seed[i] = seed[i] \* inverse(seed[(32+i)%64]) ^ pad```
+
+và cũng từ đây ta có thể tìm lại được toán bộ old_seed: ```old_seed[i] = seed[i] \* inverse(old_seed[(32+i)%64]) ^ pad```
+
+Có old_seed, bỏ vào RNG để gen ra key rồi decrypt là có được flag.
+
+[Solution](https://github.com/lttn1204/CTF/blob/main/2021/inCTF/resource/solve_right_now_generator.py) của mình 
+
+
+
