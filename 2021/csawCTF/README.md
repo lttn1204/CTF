@@ -90,7 +90,7 @@ Vì m = x\*k + k\*s nên phương tình trên đúng và signature là hợp l�
 Thông thường nếu như không biết được giá trị private key ```x``` thì sẽ rất khó để kí được 1 message.
 
 Sau khi google và tìm hiểu thì mình thấy:
-Nếu như ta chọn 1 số e tùy ý, lúc này không cần đến x ta có thể tính r và s như sau:
+Nếu như ta chọn 1 số e tùy ý, lúc này không cần biết x ta có thể tính r và s như sau:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/4.png)
 
