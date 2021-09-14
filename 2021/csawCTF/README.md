@@ -84,3 +84,14 @@ Và để verify chữ kí chích xác hay không server sẻ kiểm tra
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/3.png)
 
 Vì m = x\*k + k\*s nên phương tình trên đúng và chữ kí được chấp nhân.
+
+Thông thường nếu như không biết được giá trị private key ```x``` thì sẽ rất khó để kí được 1 message.
+
+Vậy nếu như ta chọn 1 số e tùy ý, lúc này mình sẽ tính r và s như sau:
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/4.png)
+
+r và s này sẽ là 1 cặp signature đúng cho message  m = e\*s  vì khi server verify sẽ tính:
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/5.png)
+
