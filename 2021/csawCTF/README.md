@@ -102,7 +102,7 @@ Vậy đến đây ta có thẻ giã mạo được signature có dạng m = e\*
 
 Đọc kĩ lại code, mình phát hiện:  ```Lúc server kiểm tra xem có 1 trong ba chữ cái kia ở trong message hay không thì sẽ kiểm tra đúng input của chúng ta, nhưng khi verify signature của nó thì chỉ lấy giá trị m &MASK```
 
-Lợi dụng điểm này mình có thể input message m có chứa ```both``` mà vẫn đảm bảo signature là đúng bằng cách để ```both`` nàm ngoài số bit của MASK
+Lợi dụng điểm này mình có thể input message m có chứa ```both``` mà vẫn đảm bảo signature là đúng bằng cách để ```both``` nàm ngoài số bit của MASK
 
 ```py
 def forgery(g,p,y):
@@ -114,6 +114,8 @@ def forgery(g,p,y):
     M = hex(m)[2:]
     return(M,r,s)
  ```
+ 
+ Gửi kết quả và có flag :) 
     
 # Gotta Decrypt Them All
 
