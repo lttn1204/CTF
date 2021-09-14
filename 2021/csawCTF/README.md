@@ -228,7 +228,7 @@ def SmartAttack(P,Q,p):
 
 ### PART 2: Đề tiếp tục cho 1 đường cong và 1 điểm P1,P2. Nhưng lần này order của P1 có thể factor ra thành nhiều số nguyên tố nhỏ
 
-Do đó ta có thể tính toán các bài toán logaric rời rạc modulo các số nguyên tố  nhỏ, sau đó dùng CRT để suy ra được gia trị x (Pohlig Hellman Attack)
+Do đó ta có thể tính toán các bài toán logaric rời rạc modulo các số nguyên tố  nhỏ, sau đó dùng CRT để suy ra được g trị x (Pohlig Hellman Attack)
 
 ```py
 def pohlig_hellman(P1,P2):
