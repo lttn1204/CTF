@@ -245,7 +245,7 @@ def pohlig_hellman(P1,P2):
 ```
 ### PART 3: Lần này đề chỉ cho P1, P2 và p không cho 2 giá trị a,b của đường cong
 
-Dù không cho a,b k nhưng ta vẫn có thể dễ dàng tìm ra 2 giá tị này: 
+Dù không cho a,b k nhưng ta vẫn có thể dễ dàng tìm ra 2 giá trị này: 
 
 Ta biết đường cong có dạng 
 
@@ -257,9 +257,9 @@ Với việc biết 2 điểm P1(x1,y1) và P2(x2,y2) a và b sẽ được tìn
 
 Tìm được 2 giá trị a và b, nhưng khi mình dựng lại đường cong bằng sage thấy
 
-![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/6.png) 
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/8.png) 
 
-Đây là 1 singular curve => singular curve attack 
+=> singular curve attack 
 
 ``` py
 def attack(p,a,b,P1,P2)
