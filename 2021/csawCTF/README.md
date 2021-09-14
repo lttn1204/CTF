@@ -111,8 +111,7 @@ def forgery(g,p,y):
     s = -r % (p - 1)
     m = (e*s) % (p-1)
     m += (bytes_to_long(b'both') << 1024)
-    M = hex(m)[2:]
-    return(M,r,s)
+    return(h,r,s)
  ```
  
  Gửi kết quả và có flag :) 
