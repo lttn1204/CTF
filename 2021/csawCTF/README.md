@@ -64,7 +64,7 @@ def main():
 
 if __name__ == "__main__":
 	main()
-  ```
+```
 Nhìn qua source server thì thấy đây là 1 bài [Elgamal Signature](https://en.wikipedia.org/wiki/ElGamal_signature_scheme) 
 
 Đề bài cho ta các tham số public  p,g,y và yêu cầu ta kí 1 message phải có từ ```Felicity``` hoặc ```Cisco``` hoặc ```both```
@@ -94,7 +94,187 @@ Nếu như ta chọn 1 số e tùy ý, lúc này mình sẽ tính r và s như s
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/4.png)
 
-r và s này sẽ là 1 cặp signature đúng cho message  m = e\*s  vì khi server verify sẽ tính:
+r và s này sẽ là 1 cặp signature đúng cho message  m = e\*s mod(p-1)   vì khi server  verify signature  sẽ kiểm tra:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/5.png)
 
+Vậy đến đây ta có thẻ giã mạo được signature có dạng m = e\*s mod(p-1). Vấn đề còn lại là làm sao cho message m này phải có 1 trong ba chữ cái nêu ở đầu bài.
+
+Đọc kĩ lại code, mình phát hiện:  ```Lúc server kiểm tra xem có 1 trong ba chữ cái kia ở trong message hay không thì sẽ kiểm tra đúng input của chúng ta, nhưng khi verify signature của nó thì chỉ lấy giá trị m &MASK```
+
+Lợi dụng điểm này mình có thể input message m có chứa ```both``` mà vẫn đảm bảo signature là đúng bằng cách để ```both`` nàm ngoài số bit của MASK
+
+```py
+def forgery(g,p,y):
+    e = randint(1, p-1)
+    r = y*pow(g,e,p) % p
+    s = -r % (p - 1)
+    m = (e*s) % (p-1)
+    m += (bytes_to_long(b'both') << 1024)
+    M = hex(m)[2:]
+    return(M,r,s)
+ ```
+    
+# Gotta Decrypt Them All
+
+1 bài blackbox khi connect vào server yêu cầu chúng ta code 1 chuỗi mã morse rất dài trong 1 khoảng thời gian khá ngắn => chỉ có thể code không thể decode bằng cơm :)
+
+decode morse code xong thì tiếp tục ->  convert asscii to char -> base64 -> được 1 string có dạng ```n=*********** e=3 c=*******```
+
+=> RSA với e và c nhỏ => lấy can bặc 3 của c và cuôi cùng decode root 13.
+
+Làm lại các bước trên 6 lần và có flag.
+
+```py
+from pwn import *
+import morse_talk as mtalk
+from base64 import *
+import codecs
+from gmpy2 import *
+from Crypto.Util.number import *
+def to_char(enc):
+	enc=bytes(enc)
+	enc=b64decode(enc)
+	print(enc)
+	enc=enc.split(b"\n")
+	c=int(enc[2][4:])
+	return long_to_bytes(iroot(c,3)[0])
+p=connect('crypto.chal.csaw.io', 5001)
+for i in range(6):
+	tmp=p.recvuntil(b'What does this mean?')
+	print(tmp)
+	p.recvline()
+	enc=p.recvline()[:-3].decode()
+	print(enc)
+	enc=enc.replace("/"," ")
+	enc=mtalk.decode(enc)
+	print(enc)
+	enc=str(enc)
+	result=[]
+	i=0
+	while i<len(enc):
+		if enc[i]!='1':
+			result.append(int(enc[i:i+2]))
+			i=i+2
+		else:
+			result.append(int(enc[i:i+3]))
+			i=i+3
+	print(result)
+	s=to_char(result).decode()
+	result=codecs.decode(s, 'rot_13')
+	print(result)
+	p.sendline(result)
+	i+=1
+flag=p.recvline()
+print(flag)
+flag=p.recvline()
+print(flag)
+flag=p.recvline()
+print(flag)
+flag=p.recvline()
+print(flag)
+```
+
+# RSA POP QUIZ
+
+Bài này chỉ đơn giản hỏi về các dạng attack quen thuộc của RSA
+
+### Part 1: RSA với e lớn => wiener attack 
+
+### Part 2: RSA với hint là prime prime gì đó mình quên rồi :((. Nghe tới prime mình đoán đề cho 2 prime gần nhau, mà khi 2 prime gần nhau ta có thể dể dàng factor bằng fermat factor
+
+### Part 3: Server cho ta nhâp input và trả về o hoặc 1 => RSA LSB oracle attack
+
+### Part 4: Server cho N 1024 bit,e,c và d0 là 512 bit cuối cùng của N => partial key exposure attack 
+
+
+
+
+
+# ECC POP QUIZ 
+
+Tương tự bài RSA POP QUIZ thì bài này cũng sẽ hỏi về các dạng attack quen thuôc của ECC
+
+### PART 1: Server cho các tham số của đường cong và 2 điểm P1, P2 nhiệm vụ là tìm số x sao cho P1\*x = P2
+
+Kiểm tra thấy order của P1 = order của E => smart attack
+```py 
+def SmartAttack(P,Q,p):
+    E = P.curve()
+    Eqp = EllipticCurve(Qp(p, 2), [ ZZ(t) + randint(0,p)*p for t in E.a_invariants() ])
+
+    P_Qps = Eqp.lift_x(ZZ(P.xy()[0]), all=True)
+    for P_Qp in P_Qps:
+        if GF(p)(P_Qp.xy()[1]) == P.xy()[1]:
+            break
+
+    Q_Qps = Eqp.lift_x(ZZ(Q.xy()[0]), all=True)
+    for Q_Qp in Q_Qps:
+        if GF(p)(Q_Qp.xy()[1]) == Q.xy()[1]:
+            break
+
+    p_times_P = p*P_Qp
+    p_times_Q = p*Q_Qp
+
+    x_P,y_P = p_times_P.xy()
+    x_Q,y_Q = p_times_Q.xy()
+
+    phi_P = -(x_P/y_P)
+    phi_Q = -(x_Q/y_Q)
+    k = phi_Q/phi_P
+    return ZZ(k)
+```
+
+### PART 2: Đề tiếp tục cho 1 đường cong và 1 điểm P1,P2. Nhưng lần này order của P1 có thể factor ra thành nhiều số nguyên tố nhỏ
+
+Do đó ta có thể tính toán các bài toán logaric rời rạc modulo các số nguyên tố  nhỏ, sau đó dùng CRT để suy ra được gia trị x (Pohlig Hellman Attack)
+
+```py
+def pohlig_hellman(P1,P2):
+	factors, exponents = zip(*factor(E.order()))
+	primes = [factors[i] ^ exponents[i] for i in range(len(factors))]
+	dlogs = []
+	for fac in primes:
+		t = int(int(P1.order()) // int(fac))
+		dlog = discrete_log(t*P2,t*P1,t*P1.order(),operation="+")
+		dlogs += [dlog]
+	l = crt(dlogs,primes)
+	return l
+```
+### PART 3: Lần này đề chỉ cho P1, P2 và p không cho 2 giá trị a,b của đường cong
+
+Dù không cho a,b k nhưng ta vẫn có thể dễ dàng tìm ra 2 giá tị này: 
+
+Ta biết đường cong có dạng 
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/6.png)
+
+Với việc biết 2 điểm P1(x1,y1) và P2(x2,y2) a và b sẽ được tình bằng cách:
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/7.png)
+
+Tìm được 2 giá trị a và b, nhưng khi mình dựng lại đường cong bằng sage thấy
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/6.png) 
+
+Đây là 1 singular curve => singular curve attack 
+
+``` py
+def attack(p,a,b,P1,P2)
+	F = GF(p)
+	K.<x> = F[]
+	f = x^3 + a*x + b
+	roots = f.roots()
+	if roots[0][1] == 1:
+	    beta, alpha = roots[0][0], roots[1][0]
+	else:
+	    alpha, beta = roots[0][0], roots[1][0]
+	slope = (alpha - beta).sqrt()
+	u = (P1[1] + slope*(P1[0]-alpha))/(P1[1] - slope*(P1[0]-alpha))
+	v = (P2[1] + slope*(P2[0]-alpha))/(P2[1] - slope*(P2[0]-alpha))
+	flag = discrete_log(v, u)
+	return flag
+```
+Xong Part này là có được flag
+
+# Thanks for reading and have a nice day !!!!
