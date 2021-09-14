@@ -184,7 +184,7 @@ Bài này chỉ đơn giản hỏi về các dạng attack quen thuộc của RS
 
 ### Part 2: RSA với hint là prime prime gì đó mình quên rồi :((. Nghe tới prime mình đoán đề cho 2 prime gần nhau, mà khi 2 prime gần nhau ta có thể dể dàng factor bằng fermat factor
 
-### Part 3: Server cho ta nhâp input và trả về o hoặc 1 => RSA LSB oracle attack
+### Part 3: Server cho ta nhâp input và trả về 0 hoặc 1 => RSA LSB oracle attack
 
 ### Part 4: Server cho N 1024 bit,e,c và d0 là 512 bit cuối cùng của N => partial key exposure attack 
 
