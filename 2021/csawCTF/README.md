@@ -79,8 +79,8 @@ Lúc này với message m và 1 số k chọn tùy ý signature sẽ được ge
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/1.png)
 
-Và để verify chữ kí chích xác hay không như sau:
+Và để verify chữ kí chích xác hay không server sẻ kiểm tra
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/3.png)
 
-
+Vì m = x\*k + k\*s nên phương tình trên đúng và chữ kí được chấp nhân.
