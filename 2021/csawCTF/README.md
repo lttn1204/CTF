@@ -98,7 +98,7 @@ r và s này sẽ là 1 cặp signature đúng cho message  ```m = e*s mod(p-1)`
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/5.png)
 
-Vậy đến đây ta có thẻ giã mạo được signature có dạng ```m = e*s mod(p-1)```. Vấn đề còn lại là làm sao cho message m này phải có 1 trong ba chữ cái nêu ở đầu bài.
+Vậy đến đây ta có thẻ sign được message có dạng ```m = e*s mod(p-1)```. Nhưng ta không thể control được giả trị này. Vấn đề  là làm sao cho message m này phải có 1 trong ba chữ cái nêu ở đầu bài.
 
 Đọc kĩ lại code, mình phát hiện:  ```Lúc server kiểm tra xem có 1 trong ba chữ cái kia ở trong message hay không thì sẽ kiểm tra đúng input của chúng ta, nhưng khi verify signature của nó thì chỉ lấy giá trị m &MASK```
 
