@@ -111,7 +111,7 @@ def solve(g,p,y,MARK):
     s = -r % (p - 1)
     m = (e*s) % (p-1)
     m += (bytes_to_long(b'both') << MARK.bit_length())
-    return(h,r,s)
+    return(hex(m),r,s)
  ```
  
  Gửi kết quả và có flag :) 
