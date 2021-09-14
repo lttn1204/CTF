@@ -1,4 +1,3 @@
-## Vì giải này server đóng khi kết thúc, mà đề lại đến 3 bài blackbox nên mình chỉ đưa ra ý tưởng thôi nhé :((
 
 # Forgery
 
