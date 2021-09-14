@@ -69,7 +69,7 @@ Nhìn qua source server thì thấy đây là 1 bài [Elgamal Signature](https:/
 
 Đề bài cho ta các tham số public  p,g,y và yêu cầu ta kí 1 message phải có từ ```Felicity``` hoặc ```Cisco``` hoặc ```both```
 
-Thường thì các bài về signature sẽ cho 1 hoặc 1 vài chữ kí của các message để có thể tìm điểm yếu, nhưng bài này thì không :((
+Thường thì các bài về signature sẽ cho 1 hoặc 1 vài signature của các message để có thể tìm điểm yếu, nhưng bài này thì không :((
 
 Trong Elgamal signature từ ```g```,```p```và private key ```x```, ta sẽ có public key 
 
@@ -79,15 +79,18 @@ Lúc này với message m và 1 số k chọn tùy ý signature sẽ được ge
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/1.png)
 
-Và để verify chữ kí chích xác hay không server sẻ kiểm tra
+Cặp giá trị r và s là signature của message m 
+
+Vậy để verify signature, server sẻ kiểm tra
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/3.png)
 
-Vì m = x\*k + k\*s nên phương tình trên đúng và chữ kí được chấp nhân.
+Vì m = x\*k + k\*s nên phương tình trên đúng và signature là hợp lệ
 
 Thông thường nếu như không biết được giá trị private key ```x``` thì sẽ rất khó để kí được 1 message.
 
-Vậy nếu như ta chọn 1 số e tùy ý, lúc này mình sẽ tính r và s như sau:
+Sau khi google và tìm hiểu thì mình thấy :
+Nếu như ta chọn 1 số e tùy ý, lúc này mình sẽ tính r và s như sau:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/4.png)
 
