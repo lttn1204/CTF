@@ -105,12 +105,12 @@ Vậy đến đây ta có thẻ giã mạo được signature có dạng ```m = 
 Lợi dụng điểm này mình có thể input message m có chứa ```both``` mà vẫn đảm bảo signature là đúng bằng cách để ```both``` nàm ngoài số bit của MASK
 
 ```py
-def forgery(g,p,y):
+def solve(g,p,y,MARK):
     e = randint(1, p-1)
     r = y*pow(g,e,p) % p
     s = -r % (p - 1)
     m = (e*s) % (p-1)
-    m += (bytes_to_long(b'both') << 1024)
+    m += (bytes_to_long(b'both') << M)
     return(h,r,s)
  ```
  
