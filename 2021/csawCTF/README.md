@@ -110,7 +110,7 @@ def solve(g,p,y,MARK):
     r = y*pow(g,e,p) % p
     s = -r % (p - 1)
     m = (e*s) % (p-1)
-    m += (bytes_to_long(b'both') << M)
+    m += (bytes_to_long(b'both') << MARK.bit_length())
     return(h,r,s)
  ```
  
