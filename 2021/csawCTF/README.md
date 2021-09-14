@@ -90,7 +90,7 @@ Vì m = x\*k + k\*s nên phương tình trên đúng và signature là hợp l�
 Thông thường nếu như không biết được giá trị private key ```x``` thì sẽ rất khó để kí được 1 message.
 
 Sau khi google và tìm hiểu thì mình thấy:
-Nếu như ta chọn 1 số e tùy ý, lúc này không cần biết x ta có thể tính r và s như sau:
+Nếu như ta chọn 1 số ```e``` tùy ý, lúc này không cần biết ```x``` ta có thể tính ```r``` và ```s``` như sau:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/4.png)
 
@@ -98,7 +98,7 @@ r và s này sẽ là 1 cặp signature đúng cho message  ```m = e*s mod(p-1)`
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/csawCTF/image/5.png)
 
-Vậy đến đây ta có thẻ sign được message có dạng ```m = e*s mod(p-1)```. Nhưng ta không thể control được giả trị này. Vấn đề  là làm sao cho message m này phải có 1 trong ba chữ cái nêu ở đầu bài.
+Vậy đến đây ta có thẻ sign được message có dạng ```m = e*s mod(p-1)``` nhưng ta không thể control được giả trị này. Vấn đề là làm sao cho message m này phải có 1 trong ba chữ cái nêu ở đầu bài.
 
 Đọc kĩ lại code, mình phát hiện:  ```Lúc server kiểm tra xem có 1 trong ba chữ cái kia ở trong message hay không thì sẽ kiểm tra đúng input của chúng ta, nhưng khi verify signature của nó thì chỉ lấy giá trị m &MASK```
 
