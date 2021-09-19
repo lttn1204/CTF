@@ -38,10 +38,10 @@ open("chal.enc","wb").write(cipher)
 ```
 Phân tích 1 chút:
 
--Đầu tiên đề tạo ra các tham p,q,n như các bài RSA thông thường
+* Đầu tiên đề tạo ra các tham p,q,n như các bài RSA thông thường
 
--Tiếp theo đề đọc lại chính file "chall.py" rồi chia thành 3 block = nhau và đều là 256 bytes.
+* Tiếp theo đề đọc lại chính file "chall.py" rồi chia thành 3 block = nhau và đều là 256 bytes.
 
--Cuối cùng thì mỗi block sẽ được xor với encrypt của flag với 3 e khác nhau lần lượt là 65537,65537 và 65543
+* Cuối cùng thì mỗi block sẽ được xor với encrypt của flag với 3 e khác nhau lần lượt là 65537,65537 và 65543
 
 
