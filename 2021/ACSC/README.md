@@ -47,7 +47,7 @@ Phân tích 1 chút:
 
 Vậy với việc đọc lại file ```chal.py``` và chia thành 3 blocks giống như đề và xor lại với 3 block của file ```chall.enc``` , mình dễ dàng tìm được 3 ciphertext encrypt của flag
 
-Đến đây ta thấy cả: 3 ciphertext đều encrypt chung 1 g với cùng 1 n và chỉ khác e -> commond modulus attack
+Đến đây ta thấy cả: 3 ciphertext đều encrypt chung 1 g với cùng 1 giá trị pad(flag) với cùng 1 n  và chỉ khác e -> commond modulus attack
 
 Đầu tiên dùng thuật toán Euclid mở rộng tìm 2 số a và b sao cho: ```a*e1+ b*e2 = 1```
 
