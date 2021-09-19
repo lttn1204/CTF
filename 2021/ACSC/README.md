@@ -55,7 +55,7 @@ Lúc này:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/ACSC/image.png)
 
-Ta dễ dàng tìm lại m ban đầu
+Ta dễ dàng tìm lại m b đầu
 
 ```py
 from Crypto.Util.number import *
