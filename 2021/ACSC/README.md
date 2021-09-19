@@ -37,6 +37,7 @@ for a in range(0,len(f),256):
 open("chal.enc","wb").write(cipher)
 ```
 Phân tích 1 chút:
+
 -Đầu tiên đề tạo ra các tham p,q,n như các bài RSA thông thường
 
 -Tiếp theo đề đọc lại chính file "chall.py" rồi chia thành 3 block = nhau và đều là 256 bytes.
