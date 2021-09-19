@@ -38,16 +38,16 @@ open("chal.enc","wb").write(cipher)
 ```
 Phân tích 1 chút:
 
-* Đầu tiên đề tạo ra các tham p,q,n như các bài RSA thông thường
+* Đầu tiên đề tạo ra các số p,q,n như các bài RSA thông thường
 
 * Tiếp theo đề đọc lại chính file ```chall.py```rồi chia thành 3 block = nhau và đều là 256 bytes.
 
 * Cuối cùng thì mỗi block sẽ được xor với encrypt của flag với 3 số mũ e khác nhau lần lượt là 65537,65537 và 65543 ròi ghi vào file ```chal.enc```
 
 
-Vậy với việc đọc lại file ```chal.py``` và chia thành 3 blocks giống như đề và xor lại với 3 block của file ```chall.enc``` , mình dễ dàng tìm được 3 ciphertext của encrypt RSA với 3 số mũ e khác nhau cùng n
+Vậy với việc đọc lại file ```chal.py``` và chia thành 3 blocks giống như đề và xor lại với 3 block của file ```chall.enc``` , mình dễ dàng tìm được 3 ciphertext encrypt của flag
 
-Đến đây ta thấy cả 3 ciphertext đều encrypt với cùng 1 n và chỉ khác e -> commond modulus attack
+Đến đây ta thấy cả: 3 ciphertext đều encrypt chung 1 g với cùng 1 n và chỉ khác e -> commond modulus attack
 
 Đầu tiên dùng thuật toán Euclid mở rộng tìm 2 số a và b sao cho: ```a*e1+ b*e2 = 1```
 
