@@ -135,7 +135,7 @@ if __name__ == '__main__':
 Đề cũng cho sẵn chúng ta signature của 4 command  ```'id', 'uname', 'ls', 'date'```
 
 
-![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p3.png)
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p7.png)
 
 Như vậy có thể thấy nếu muốn flag thì ta phải có signature của các command đọc flag :D ```cat flag``` chẳng hạn
 
