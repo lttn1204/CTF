@@ -132,4 +132,6 @@ flow của đề như sau:
 * Gen ra N bằng GenN()
 * Gen ra token bằng generateRandomString()
 * encrypt(N,token)
-* N
+* Nếu chúng ta recover lại được token và gửi lại thì có flag :D
+
+
