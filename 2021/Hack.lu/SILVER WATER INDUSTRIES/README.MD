@@ -135,7 +135,7 @@ flow của đề như sau:
 * Cho chúng ta ```N``` và kết quả sau khi encrypt, nếu chúng ta recover lại được ```token``` và gửi lại thì có flag :D
 
 
-OK vậy giờ muốn recover lại được token, mình cần phải biết hàm encrypt() nó làm gì mới được
+OK vậy giờ muốn recover lại được token, mình cần phải biết hàm encrypt() nó làm gì :
 
 Để dễ nhìn mình viết lại hàm encrypt() bằng python như sau
 
