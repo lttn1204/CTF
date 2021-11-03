@@ -130,7 +130,7 @@ if __name__ == '__main__':
     main()
 ```
 
-1 Bài ECC cho phép chúng run các command nếu có được các signature của command ấy
+1 Bài ECC cho phép chúng ta run các command nếu có được các signature của command ấy
 
 Đề cũng cho sẵn chúng ta signature của 4 command  ```'id', 'uname', 'ls', 'date'```
 
@@ -138,4 +138,18 @@ if __name__ == '__main__':
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p3.png)
 
 Như vậy có thể thấy nếu muốn flag thì ta phải có signature của các command đọc flag :D ```cat flag``` chẳng hạn
+
+Ban đầu mình chú ý tới các dòng
+```py
+date = int(time.time())
+nonce = Integer.random_range(min_inclusive=1,max_exclusive=key._curve.order)
+z = f'{nonce}||{date}'
+```
+Nhìn vào mình nghĩ ngay tới bias nonce và trong đầu mình kiểu : "Thấy mẹ ròi, lại lattice à 😥"
+
+Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng sha(z) để tính và sha(z) cùng với order của curve cũng là 256 bit nên mình nghĩ chắc không phải ròi
+
+Lúc này mình tìm đến nhưng chổ khác và mình thấy bài này không khó như mình tưởng :v
+
+
 
