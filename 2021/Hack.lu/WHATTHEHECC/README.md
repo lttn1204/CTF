@@ -151,6 +151,7 @@ Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng SHA(z)
 
 Lúc này mình tìm đến nhưng chổ khác và mình thấy bài này không khó như mình tưởng :v
 
+
 Nhìn vào hàm ```sign``` và ```verify```
 
 Giả sử pubkey là G là secret là d và Q = d\*G và z sinh ra từ 3 dòng ở trên
@@ -160,6 +161,28 @@ Ví dụ ta muốn sign 1 message m, server sẽ làm như sau:
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p5.png)
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p6.png)
+
+Signaturec sẽ có dạng ```R(x)||R(y)||S||m```
+
+Ok bây giờ mình sẽ forge signature của  ```cat flag``` từ signature của ```ls```
+
+Từ server mình sẽ  có được signatrue của ```ls```, tức là mình đã có được các tham số sau:
+* G có sẵn
+* R và S từ signature
+* SHA(m)
+
+Vì công thức verify chỉ tính 
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p9.png)
+ 
+Nên vế phải ta hoàn toàn tính được
+
+vậy nhiệm vụ là cần tìm R vs S mới sao cho
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p10.png)
+
+
+
 
 
 
