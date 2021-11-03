@@ -145,7 +145,7 @@ date = int(time.time())
 nonce = Integer.random_range(min_inclusive=1,max_exclusive=key._curve.order)
 z = f'{nonce}||{date}'
 ```
-Nhìn vào mình nghĩ ngay tới bias nonce và trong đầu mình kiểu : "Thấy mẹ ròi, lại lattice à 😥"
+Nhìn vào mình nghĩ ngay tới bias nonce và trong đầu mình kiểu : "Thấy mẹ ròi, lại lattice 😥"
 
 Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng SHA(z) để tính và SHA(z) cùng với order của curve cũng là 256 bit nên mình nghĩ chắc không phải (hoặc có lẽ phải nhưng mình không nhìn ra :((  )
 
@@ -199,7 +199,34 @@ Easy đúng hong :hihi
  
 Hơi lười nên mình chỉ viết lại hàm forge thôi, sau đó nhâp tay lên server :(((
 
+``` py
+import sys
+import shlex
+import subprocess
+from Cryptodome.PublicKey import ECC
+from Cryptodome.Hash import SHA3_256
+from Cryptodome.Math.Numbers import Integer
+import time 
 
+def hash(msg):
+    h_obj = SHA3_256.new()
+    h_obj.update(msg.encode())
+    return Integer.from_bytes(h_obj.digest())
+
+pub = ECC.EccPoint(107574022577513940130512558465327060873205787310786847006619945778082812216463, 15916275444594839428821372321428173508356064540350757394782660883693060315776,curve='P-256')
+
+def forge(x,y,s):
+	R=ECC.EccPoint(x, y, curve='P-256')
+	target=hash('ls') * pub._curve.G
+	tmp1 = s * pub._curve.G
+	tmp3=target+(-tmp1)
+	new_target=hash('cat flag') * pub._curve.G
+	x=new_target+(-target)
+	new_tmp1=new_target+(-tmp3)
+	Q=tmp3+(-R)
+	r=R+x
+	return r.x,r.y,s
+```
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p13.png)
 
 
