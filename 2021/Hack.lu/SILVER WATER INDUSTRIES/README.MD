@@ -145,12 +145,18 @@ def encryptByte(b,N):
 	z=-1
 	enc=[]
 	for i in range(8):
-		bit=b & pow(2,7-i)
+		bit=ord(b) & pow(2,7-i)
 		x=genX(N)
 		x=pow(x,2,N)
 		if bit!=0:
 			x=(x*z)%N
 		enc.append(x)
-	return 
+	return enc
+```
+Nhìn vào dễ dàng thấy được các giá trị trong mảng trả về sẽ có 2 trường hợp:
+* Là căn bậc 2 modulo ```N``` nếu bit của ```b``` tại vị trí đó là 0
+* Không là căn bặc 2 modulo ```N``` nếu bit của ```b``` tại vị trí đó là 1
+
+Vậy giả sử nếu chúng ta có thể xác đinh được số nào là căn bậc 2 modulo N thì từ đó có thể dễ dàng suy ra được bit của ```b``` tại vị trí đó :d -> jacobi symbol :D
 
 
