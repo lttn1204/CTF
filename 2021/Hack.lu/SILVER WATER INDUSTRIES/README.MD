@@ -131,7 +131,25 @@ Vì không quen với go nên mình đọc bài này khá lâu :((
 flow của đề như sau: 
 * Gen ra N bằng GenN()
 * Gen ra token bằng generateRandomString()
-* encrypt(N,token)
+* encryptBytes() N với lần lượt các kí tự trong token
 * Nếu chúng ta recover lại được token và gửi lại thì có flag :D
+
+
+OK vậy giờ muốn recover lại được token, mình cần phải biết hàm encrypt() nó làm gì mới được
+
+Để dễ nhìn mình viết lại hàm encrypt() bằng python như sau
+
+``` py
+def encryptByte(b,N):
+	z=-1
+	enc=[]
+	for i in range(8):
+		bit=b & pow(2,7-i)
+		x=genX(N)
+		x=pow(x,2,N)
+		if bit!=0:
+			x=(x*z)%N
+		enc.append(x)
+	return 
 
 
