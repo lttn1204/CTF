@@ -8,7 +8,7 @@ Chẳng tháy nói gì, chỉ hiện lên 1 số nào đó và 20 mảng mỗi m
 
 OK báy giờ mình sẽ đọc source
 
-```g
+``` go
 package main
 
 import (
