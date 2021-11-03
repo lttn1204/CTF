@@ -153,7 +153,7 @@ Lúc này mình tìm đến nhưng chổ khác và mình thấy bài này không
 
 Nhìn vào hàm ```sign``` và ```verify```
 
-Giả sử pubkey là G là secret là D và Q = d\*G và z sinh ra từ 3 dòng ở trên
+Giả sử pubkey là G là secret là d và Q = d\*G và z sinh ra từ 3 dòng ở trên
 
 Ví dụ ta muốn sign 1 message m, server sẽ làm như sau:
 
