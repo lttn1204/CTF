@@ -231,6 +231,6 @@ def forge(x,y,s):
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p13.png)
 
 
-
+PS: Mình nghĩ có lẻ đây không là cách giải mong muốn của tác giả 😔
 
 
