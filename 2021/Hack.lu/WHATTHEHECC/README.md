@@ -160,6 +160,7 @@ Ví dụ ta muốn sign 1 message m, server sẽ làm như sau:
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p5.png)
 
+
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p6.png)
 
 Signaturec sẽ có dạng ```R(x)|R(y)|S|m```
