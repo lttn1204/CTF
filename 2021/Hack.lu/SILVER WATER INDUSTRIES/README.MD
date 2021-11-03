@@ -134,6 +134,7 @@ flow của đề như sau:
 * encryptBytes() ```N``` với lần lượt các kí tự trong ```token```
 * Cho chúng ta ```N``` và kết quả sau khi encrypt, nếu chúng ta recover lại được ```token``` và gửi lại thì có flag :D
 
+Như vậy thì số đầu tiên nhận được khi nc vào server chính là ```N```, 20 mảng phía sau chính là 20 két quả sau khi encrypt của các kí tự trong ```token```
 
 OK vậy giờ muốn recover lại được token, mình cần phải biết hàm encrypt() nó làm gì :
 
