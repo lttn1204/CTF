@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-Vì không quen với go nên mình đọc bài này khá lâu :((
+Vì không quen với go nên mình đọc bài này hơi lâu :((
 
 Để dễ hình dung thì:
 * GenN() trả về 1 số nguyên N là tích của 2 số nguyên tố, N khá nhỏ nên có thể factor được
@@ -129,10 +129,10 @@ Vì không quen với go nên mình đọc bài này khá lâu :((
 * generateRandomString() đơn giản tạo ra 1 chuỗi ngẫu nhiên 20 kí tự trong ```letter```
 
 flow của đề như sau: 
-* Gen ra N bằng GenN()
-* Gen ra token bằng generateRandomString()
-* encryptBytes() N với lần lượt các kí tự trong token
-* Nếu chúng ta recover lại được token và gửi lại thì có flag :D
+* Gen ra ```N``` bằng GenN()
+* Gen ra ```token``` bằng generateRandomString()
+* encryptBytes() ```N``` với lần lượt các kí tự trong ```token```
+* Cho chúng ta ```N``` và kết quả sau khi encrypt, nếu chúng ta recover lại được ```token``` và gửi lại thì có flag :D
 
 
 OK vậy giờ muốn recover lại được token, mình cần phải biết hàm encrypt() nó làm gì mới được
