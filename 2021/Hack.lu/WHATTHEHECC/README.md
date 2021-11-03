@@ -191,9 +191,16 @@ Vậy lúc này
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p12.png)
 
 
+Hiểu đơn giản thì ta chỉ cần signature của ```ls``` + X là sẽ có được signature của ```cat flag```
+
+Vậy đơn giản mình chỉ cần giữ nguyên S và lấy R của ```ls``` công với điểm X vừa tính ra được, submit lại và get flag :))
+
+Easy đúng hong :hihi
+ 
+Hơi lười nên mình chỉ viết lại hàm forge thôi, sau đó nhâp tay lên server :(((
 
 
-
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p13.png)
 
 
 
