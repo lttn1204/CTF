@@ -188,7 +188,7 @@ Vì vế phải của cả 2 signature ta đề có thể tính được nên ta
 
 Vậy lúc này 
 
-![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p11.png)
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p12.png)
 
 
 
