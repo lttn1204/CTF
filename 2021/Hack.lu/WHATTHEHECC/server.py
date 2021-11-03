@@ -6,7 +6,6 @@ from Cryptodome.PublicKey import ECC
 from Cryptodome.Hash import SHA3_256
 from Cryptodome.Math.Numbers import Integer
 import time 
-flag{d1d_you_f1nd_chakraborty_mehta}
 # util
 
 def run_cmd(cmd):
