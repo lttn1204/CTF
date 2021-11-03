@@ -131,7 +131,7 @@ Vì không quen với go nên mình đọc bài này hơi lâu :((
 flow của đề như sau: 
 * Gen ra ```N``` bằng GenN()
 * Gen ra ```token``` bằng generateRandomString()
-* encryptBytes() ```N``` với lần lượt các kí tự trong ```token```
+* encryptBytes()  lần lượt các kí tự trong ```token``` với ```N```
 * Cho chúng ta ```N``` và kết quả sau khi encrypt, nếu chúng ta recover lại được ```token``` và gửi lại thì có flag :D
 
 Như vậy thì số đầu tiên nhận được khi nc vào server chính là ```N```, 20 mảng phía sau chính là 20 két quả sau khi encrypt của các kí tự trong ```token```
@@ -153,10 +153,55 @@ def encryptByte(b,N):
 		enc.append(x)
 	return enc
 ```
-Nhìn vào dễ dàng thấy được các giá trị trong mảng trả về sẽ có 2 trường hợp:
+
+Nhìn vào dễ dàng thấy được các giá trị trong mảng trả về tương ứng với vị trí các bit trong ```b``` và sẽ có 2 trường hợp:
 * Là căn bậc 2 modulo ```N``` nếu bit của ```b``` tại vị trí đó là 0
 * Không là căn bặc 2 modulo ```N``` nếu bit của ```b``` tại vị trí đó là 1
 
 Vậy giả sử nếu chúng ta có thể xác đinh được số nào là căn bậc 2 modulo N thì từ đó có thể dễ dàng suy ra được bit của ```b``` tại vị trí đó :d -> jacobi symbol :D
+
+``` py
+from sock import *
+from gmpy2 import *
+p=Sock('flu.xxx', 20060)
+n=int(p.recvline())
+print(f"N: {n}")
+def filter(s):
+	arr=[]
+	s=s.split(b' ')
+	for i in range(len(s)):
+		if i==0:
+			tmp=s[i][1:]
+			arr.append(int(tmp))
+		elif i==7:
+			tmp=s[i][:-2]
+			arr.append(int(tmp))
+		else:
+			arr.append(int(s[i]))
+	print(arr)
+	return arr
+	
+
+def decrypt(nums):
+	arr=[]
+	for num in nums:
+		if  jacobi(num,n)==1:
+			arr.append(0)
+		else:
+			arr.append(1)
+	return chr(int("".join([str(x) for x in arr]),2))	
+token=''
+for _ in range(20):
+	arr=p.recvline()
+	arr=filter(arr)
+	token+=decrypt(arr)
+	print(token)
+print(p.recvline())
+
+p.sendline(token)
+print(p.recvline())
+
+```
+
 
 
