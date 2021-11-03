@@ -151,5 +151,20 @@ Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng SHA(z)
 
 Lúc này mình tìm đến nhưng chổ khác và mình thấy bài này không khó như mình tưởng :v
 
+Nhìn vào hàm ```sign``` và ```verify```
+
+Giả sử pubkey là G là secret là D và Q = d\*G và z sinh ra từ 3 dòng ở trên
+
+Ví dụ ta muốn sign 1 message m, server sẽ làm như sau:
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p5.png)
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p6.png)
+
+
+
+
+
+
 
 
