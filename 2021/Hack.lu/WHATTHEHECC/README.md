@@ -147,7 +147,7 @@ z = f'{nonce}||{date}'
 ```
 Nhìn vào mình nghĩ ngay tới bias nonce và trong đầu mình kiểu : "Thấy mẹ ròi, lại lattice à 😥"
 
-Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng sha(z) để tính và sha(z) cùng với order của curve cũng là 256 bit nên mình nghĩ chắc không phải ròi
+Nhưng sau 1 lúc xem kĩ thì mình thấy lúc tính server sử dụng SHA(z) để tính và SHA(z) cùng với order của curve cũng là 256 bit nên mình nghĩ chắc không phải (hoặc có lẽ phải nhưng mình không nhìn ra :((  )
 
 Lúc này mình tìm đến nhưng chổ khác và mình thấy bài này không khó như mình tưởng :v
 
