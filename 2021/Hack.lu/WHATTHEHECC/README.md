@@ -181,7 +181,15 @@ vậy nhiệm vụ là cần tìm R vs S mới sao cho
 
 ![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p10.png)
 
-Vì vế phải của cả 2 signature ta đề có thể tính được nên ta cũng sẽ tính được giá trị X sao cho: ```SHA('cat flag') \* G -  SHA('ls') \* G ```
+Vì vế phải của cả 2 signature ta đề có thể tính được nên ta cũng sẽ tính được giá trị X sao cho: 
+
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p11.png)
+
+Vậy lúc này 
+
+![](https://github.com/lttn1204/CTF/blob/main/2021/Hack.lu/image/p11.png)
+
 
 
 
