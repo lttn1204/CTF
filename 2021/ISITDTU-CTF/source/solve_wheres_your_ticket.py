@@ -16,7 +16,7 @@ data=bytes.fromhex(encrypted[32:].decode())
 print(iv,data)
 
 msg=b'guest\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b'
-
+#Flipping IV
 tmp=iv
 new_iv=xor(tmp,b'royal\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b')
 new_iv=xor(new_iv,b'guest\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1b')
@@ -25,9 +25,8 @@ new_encrypted=new_encrypted.hex()
 print(len(new_encrypted),len(encrypted))
 print(new_encrypted)
 payload=b'name=player101&role='+new_encrypted.encode()
-pp=b'name=player101&role='+encrypted
-###get hash key
-#numpad=48
+########################
+#F
 p.sendline('3')
 p.recvuntil(b'Your data:')
 p.sendline(b'6'*64+payload)
@@ -39,6 +38,8 @@ p.recvuntil(b'Your data:')
 p.sendline(b'\\'*64+bytes.fromhex(t1.decode()))
 t2=p.recvline()[7:-1]
 print(t2)
+#########
+#GET FLAG
 p.recvuntil(b'Your choice: ')
 p.sendline('1')
 p.recvuntil(b'Your data: ')
