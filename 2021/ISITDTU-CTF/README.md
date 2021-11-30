@@ -408,6 +408,36 @@ print(enc.hex())
 
 Code khá ngắn, nhưng mà làm thì không dê tí nào :((
 
+1 bài discrete log nhưng mà trên các ma trận. Trước giờ mình chưa gặp bài dạng này nhưng mà mình biết 1 phương pháp để giải là chéo hóa ma trận để đưa bài toán về tính discrete_log trên các số nguyên. Mình factor thử p-1 thì thấy cũng khá smooth nên cách này có vẻ khả thi.
+
+Giã sử ma trận M và A có thể chéo hóa được, với M ta sẽ có tìm được G và H sao cho 
+
+```M = G * H * H^-1```
+Tương tự với A cũng sẽ tìm được P và Q sao cho :
+```A = P * Q * P^-1```
+
+Lúc này H và Q sẽ ở dạng ```Jordan Canonical form ``` tức là các giá trị ngoài đường chéo chính sẽ = 0
+
+Lúc này ```A = M^a <=> Q = H^a```
+
+Lúc này ta chỉ cần tính discrete_log của 2 phần tử đầu tiên của hàng đầu tiên mỗi ma trận Q và H là sẽ tìm được 
+
+Oke flow là như thế nhưng đời không như là mơ, cả 3 ma trận M, A, B đều không chéo hóa được :((
+
+Sau khi research tìm kiếm các writeup thì mình tìm được link này
+
+https://hxp.io/blog/22/9447-CTF-2015-crypto310-Fibbed-writeup/
+
+Vấn đề khá giống với bài của mình , không chéo hóa ma trận được
+
+Ý tưởng để giải quyết là chuyển các ma trận sáng 1 trường mở rộng khác mà các vector có thể chéo hóa được
+
+
+
+
+
+
+
 
  
   
