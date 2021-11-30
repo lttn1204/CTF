@@ -265,7 +265,8 @@ Ví dụ xor như trên , kết quả sẽ ra là:
  Ta thấy nếu độ dài giữa key và data khác nhau, hàm này chỉ xor cho dến vị trí cuối cùng của bên ngắn hơn, đoạn còn lại thì sẽ đem phần còn lại của bên dài hơn xuống :d
  
  Oke coi như đã thấy dc 1 cái gì đó, tiếp theo minh sẽ xem mã giả của HMAC 
- ````py
+ 
+ ```py
  function hmac is
     input:
         key:        Bytes    // Array of bytes
