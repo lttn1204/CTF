@@ -308,6 +308,13 @@ từ đây ta có thể suy ra được 2 giá trị ```o_key_pad``` và ```i_ke
   
   Vậy mình đã tính được phần hash phía sau trong HMAC ( tức là ``hash(i_key_pad ∥ message)``) 
   
-  Tiếp theo ý tưởng vẫn thế, mình sẻ gửi tiếp 64 bytes (0x5c) + hash vừa tính được vào option ```sign_old``` , giá trị trả về lúc này chính là gias trị HMAC của mesage chúng ta cần.
+  Tiếp theo ý tưởng vẫn thế, mình sẻ gửi tiếp 64 bytes (0x5c) + hash vừa tính được vào option ```sign_old``` , giá trị trả về lúc này chính là giá trị HMAC của mesage chúng ta cần.
+  
+ script_solve mình để [đây](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/source/solve_wheres_your_ticket.py)
+ 
+ ![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/result_ticket.png)
+ 
+ ps: 
+ 
   
   
