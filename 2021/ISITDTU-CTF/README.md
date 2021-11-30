@@ -1,7 +1,7 @@
 
 
 # Where  your ticket
-```p
+```py
 #nc 34.125.6.66 5000
 from Crypto.Cipher import AES
 from hashlib import md5
@@ -253,7 +253,8 @@ def xor_key( a):
 
 key=b'lttnlttn'
 data='lttnlttnahihihihihihihi'
-print(xor_key(data)) ```
+print(xor_key(data)) 
+```
 
 Ví dụ xor như trên , kết quả sẽ ra là: 
 
