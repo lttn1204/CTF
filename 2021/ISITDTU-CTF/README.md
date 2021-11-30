@@ -286,7 +286,8 @@ Ví dụ xor như trên , kết quả sẽ ra là:
     i_key_pad ← key xor [0x36  blockSize]   // Inner padded key
 
     return  hash(o_key_pad ∥ hash(i_key_pad ∥ message))
-    ```
+    
+```
     
     
  
