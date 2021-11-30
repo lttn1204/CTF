@@ -289,9 +289,25 @@ Ví dụ xor như trên , kết quả sẽ ra là:
     return  hash(o_key_pad ∥ hash(i_key_pad ∥ message))
     
 ```
-    
-    
+Vì thuật toán hash là md5 nên ta xác đinh được blockSize là 64 và ouputSzie là 16
+
+Key trong trường hơp của này của chúng ta chắc chắc sẽ nhỏ hơn 64 (có thể là 16 hoặc 32 bytes mình giả định key là 16 bytes, 32 bytes cũng sẽ tương tự)
+
+Vậy việc đầu tiên khi hash là sẽ pad thêm các bytes b'\x00' sao cho độ dài key đủ 64 bytes
+
+từ đây ta có thể suy ra được 2 giá trị ```o_key_pad``` và ```i_key_pad``` lầ lượt là :
+
+```o_key_pad = 16 bytes key + 48*0x5c```
+
+```i_key_pad = 16 bytes key + 48*0x36```
  
- 
+  
+  Vậy lúc này mình sẽ lợi dụng vào option ```sign_old``` để có thể giả mạo HMAC như sau ( mình tạm gọi đoạn mình cần tình HMAC là message):
+  
+  Đầu tiên mình sẽ input 64 bytes 0x36 + message, vì server nhận string nên mình sẽ gửi 64 kí tự "6"+ message vào option ```sign_old```. Lúc này server sẽ xor 64 bytes '6'+message với lại key (tức là ra được luôn cái ```i_key_pad+message``` ) xong rồi md5 lại.
+  
+  Vậy mình đã tính được phần hash phía sau trong HMAC ( tức là ``hash(i_key_pad ∥ message)``) 
+  
+  Tiếp theo ý tưởng vẫn thế, mình sẻ gửi tiếp 64 bytes (0x5c) + hash vừa tính được vào option ```sign_old``` , giá trị trả về lúc này chính là gias trị HMAC của mesage chúng ta cần.
   
   
