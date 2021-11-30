@@ -429,7 +429,7 @@ https://hxp.io/blog/22/9447-CTF-2015-crypto310-Fibbed-writeup/
 
 Vấn đề khá giống với bài của mình , không chéo hóa ma trận được a
 
-Ý tưởng để giải quyết là chuyển các ma trận sáng 1 trường mở rộng khác mà các vector có thể chéo hóa được
+Ý tưởng để giải quyết là chuyển các ma trận sáng 1 trường mở rộng khác mà các ma trận có thể chéo hóa được
 
 Mình làm theo nhưng tới bước  residue_field thì gặp lỗi ```ideal is not maximal```
 
@@ -467,7 +467,7 @@ print(cipher.decrypt(bytes.fromhex('0a329552d58fc2e4a23d6dff940ef70acba35d8049a4
 ![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/result_matrix.png)
 
 Thật sự giải ra bài này cũng nhờ may mắn, kiến thức còn thiếu sót nhiều quá, cần học hành chăm chỉ hơn :((
-
+ps: Mình sẽ update bài matrix khi nghiên cứu xong vnó :D
 
 
 # Thanks for reading and have a good day ~~~~
