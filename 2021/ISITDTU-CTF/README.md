@@ -1,4 +1,4 @@
-#### Lần thứ mình 2 tham gia ISITDTU-CTF của Đại học Duy Tân, cảm thấy vui vì không còn phế như năm trước nữa :((
+#### Lần thứ mình 2 tham gia ISITDTU-CTF của Đại học Duy Tân, cảm thấy vui vì không còn phế như năm trước nữa :3
 
 # One time peach
 ## Challenge
