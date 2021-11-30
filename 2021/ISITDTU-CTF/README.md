@@ -407,7 +407,7 @@ print(enc.hex())
 
 Code khá ngắn, nhưng mà làm thì không dê tí nào :((
 
-1 bài discrete log nhưng mà trên các ma trận. Trước giờ mình chưa gặp bài dạng này nhưng mà mình biết 1 phương pháp để giải là chéo hóa ma trận để đưa bài toán về tính discrete_log trên các số nguyên. Mình factor thử p-1 thì thấy cũng khá smooth nên cách này có vẻ khả thi.
+1 bài discrete log nhưng mà trên các ma trận. Trước giờ mình chưa gặp bài dạng này, nhưng mà mình biết 1 phương pháp để giải là chéo hóa ma trận để đưa bài toán về tính discrete_log trên các số nguyên. Mình factor thử p-1 thì thấy cũng khá smooth nên cách này có vẻ khả thi.
 
 Giã sử ma trận M và A có thể chéo hóa được, với M ta sẽ có tìm được G và H sao cho 
 
