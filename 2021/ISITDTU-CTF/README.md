@@ -264,7 +264,7 @@ Ví dụ xor như trên , kết quả sẽ ra là:
   
  Ta thấy nếu độ dài giữa key và data khác nhau, hàm này chỉ xor cho dến vị trí cuối cùng của bên ngắn hơn, đoạn còn lại thì sẽ đem phần còn lại của bên dài hơn xuống :d
  
- Oke coi như đã thấy dc 1 cái gì đó, tiếp theo minh sẽ xem mã giả của HMAC 
+ Oke tiếp theo minh sẽ xem mã giả của HMAC 
  
  ```py
  function hmac is
@@ -314,7 +314,9 @@ từ đây ta có thể suy ra được 2 giá trị ```o_key_pad``` và ```i_ke
  
  ![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/result_ticket.png)
  
- ps: 
+ ps: Thật ra mình cũng khá confuse ở bước cuối cùng, vì giá trị hash đầu tiên của mình ở dạng hex chứ không phải bytes, thế mà gửi lên vẫn đúng :(( 
+ 
+ 
  
   
   
