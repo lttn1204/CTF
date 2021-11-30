@@ -412,6 +412,7 @@ Code khá ngắn, nhưng mà làm thì không dê tí nào :((
 Giã sử ma trận M và A có thể chéo hóa được, với M ta sẽ có tìm được G và H sao cho 
 
 ```M = G * H * H^-1```
+
 Tương tự với A cũng sẽ tìm được P và Q sao cho :
 ```A = P * Q * P^-1```
 
