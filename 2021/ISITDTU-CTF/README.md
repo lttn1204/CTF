@@ -354,7 +354,7 @@ Vì thuật toán hash là md5 nên ta xác đinh được blockSize là 64 và 
 
 Key trong trường hơp của này của chúng ta chắc chắc sẽ nhỏ hơn 64 (có thể là 16 hoặc 32 bytes mình giả định key là 16 bytes, 32 bytes cũng sẽ tương tự)
 
-Vậy việc đầu tiên khi hash là sẽ pad thêm các bytes b'\x00' sao cho độ dài key đủ 64 bytes
+Vậy việc đầu tiên khi hash là sẽ pad thêm các bytes b'\x00' sao cho độ dài key đủ 64 bytes 
 
 từ đây ta có thể suy ra được 2 giá trị ```o_key_pad``` và ```i_key_pad``` lầ lượt là :
 
