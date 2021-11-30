@@ -1,3 +1,5 @@
+#### Lần thứ mình 2 tham gia ISITDTU-CTF của Đại học Duy Tân, cảm thấy vui vì không còn phế như năm trước nữa :((
+
 # One time peach
 ## Challenge
 ```py
@@ -376,7 +378,37 @@ từ đây ta có thể suy ra được 2 giá trị ```o_key_pad``` và ```i_ke
  
  ps: Thật ra mình cũng khá confuse ở bước cuối cùng, vì giá trị hash đầu tiên của mình ở dạng hex chứ không phải bytes, thế mà gửi lên vẫn đúng :(( 
  
- 
+ # Matrix Crypto
+ ## Challenge
+ ```py
+ from hashlib import sha256
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+
+flag = b"???"
+flag = pad(flag, AES.block_size)
+
+p = random_prime(2^120)
+M = Matrix(GF(p),8,8)
+M.randomize()
+a = randint(0,p)
+b = randint(0,p)
+S = M^(a*b)
+
+print(p)
+print(list(M))
+print(list(M^a))
+print(list(M^b))
+
+key = sha256(S.str().encode()).digest()
+cipher = AES.new(key, AES.MODE_ECB)
+enc = cipher.encrypt(flag)
+print(enc.hex())
+```
+
+Code khá ngắn, nhưng mà làm thì không dê tí nào :((
+
+
  
   
   
