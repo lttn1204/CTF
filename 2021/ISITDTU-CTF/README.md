@@ -36,8 +36,7 @@ with open('cipher.enc', 'wb') as g:
 ```
 Nhìn vào source code ta thấy file flag sẽ được xor với 1 key nào đó 27 bytes rồi write lại vào file cipher.enc
 
-Key được lấy ra từ 1 file ```beaches.txt```nào đó toàn các kí tự số và có vẻ rất lớn, tác giả cũng cho ta biết 20 kí tự đầu của file ```beaches.txt```
-
+Key được lấy ra từ 1 file ```beaches.txt```nào đó toàn các kí tự số và có vẻ rất lớn, tác giả cũng cho ta biết 20 kí tự đầu của file ```beaches.txt``` 
 Mình cứ hoay hoay mà không nghĩ ra bài này phải làm thế nào, có lẻ là phải đoán file beaches.txt là file nào đó có sẵn chẳn hạn :((
 
 Lúc sau thì tác giả cho biết format file flag lag JPEG.
@@ -420,7 +419,7 @@ Lúc này H và Q sẽ ở dạng ```Jordan Canonical form ``` tức là các gi
 
 Lúc này ```A = M^a <=> Q = H^a```
 
-Lúc này ta chỉ cần tính discrete_log của 2 phần tử đầu tiên của hàng đầu tiên mỗi ma trận Q và H là sẽ tìm được 
+Lúc này ta chỉ cần tính discrete_log của 2 phần tử đầu tiên của hàng đầu tiên mỗi ma trận Q và H là sẽ tìm được a
 
 Oke flow là như thế nhưng đời không như là mơ, cả 3 ma trận M, A, B đều không chéo hóa được :((
 
@@ -428,9 +427,51 @@ Sau khi research tìm kiếm các writeup thì mình tìm được link này
 
 https://hxp.io/blog/22/9447-CTF-2015-crypto310-Fibbed-writeup/
 
-Vấn đề khá giống với bài của mình , không chéo hóa ma trận được
+Vấn đề khá giống với bài của mình , không chéo hóa ma trận được a
 
 Ý tưởng để giải quyết là chuyển các ma trận sáng 1 trường mở rộng khác mà các vector có thể chéo hóa được
+
+Mình làm theo nhưng tới bước  residue_field thì gặp lỗi ```ideal is not maximal```
+
+Thật sự lúc này mình cũng khá bí, mình không nắm rõ lý thuyết phần này cũng như ko hiểu về nó lắm :((
+
+Sau 1 lúc thì mình thấy characteristic polynomial có thể factor ra được nữa, thế là mình thử factor ra rồi thay characteristic polynomial bằng factor ấy thì lúc này không còn lỗi nữa và change ring thành công :D
+
+```py
+#p=....
+#m=....
+#a=.....
+#b=.....
+
+M=matrix(GF(p),m)
+A=matrix(GF(p),a)
+B=matrix(GF(p),b)
+
+tmp=A.characteristic_polynomial()
+t=factor(tmp)[1][0]
+K = PolynomialRing(Zmod(p), 'x').residue_field(t, 'y'); y = K.gen()
+M,A = M.change_ring(K), A.change_ring(K)
+
+DM, S = M.jordan_form(transformation = True)
+
+
+DA = S.inverse() * A * S
+a=discrete_log(DM[0][0],DA[0][0])
+S=B^a
+from hashlib import sha256
+from Crypto.Cipher import AES
+key = sha256(S.str().encode()).digest()
+cipher = AES.new(key, AES.MODE_ECB)
+print(cipher.decrypt(bytes.fromhex('0a329552d58fc2e4a23d6dff940ef70acba35d8049a40e53a237d8e9b632947db2174f97b75cf6e3c0d9919945bb84d7')))
+```
+![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/result_matrix.png)
+
+Thật sự giải ra bài này cũng nhờ may mắn, kiến thức còn thiếu sót nhiều quá, cần học hành chăm chỉ hơn :((
+
+
+
+# Thanks for reading and have a good day ~~~~
+
 
 
 
