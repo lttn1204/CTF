@@ -47,7 +47,7 @@ Loay hoay cả buồi chiều không ra gì, đường cùng rồi nên mình l�
 
 Mình tìm được link này https://www.learningcontainer.com/sample-jpeg-file-download-for-testing/ trong đó có chưa 4 file ảnh, máy mắn sao 1 trong 4 file ảnh đó lại trừng 27 bytes đầu tiên với file flag, thế là ra :v 
 ```py
-from pwn import *
+from pwn import * 
 
 tmp=open('Sample-JPEG-Image-File-Download.jpg','rb').read()
 c=open('cipher.enc','rb').read()
