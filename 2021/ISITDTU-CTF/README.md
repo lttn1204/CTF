@@ -467,7 +467,8 @@ print(cipher.decrypt(bytes.fromhex('0a329552d58fc2e4a23d6dff940ef70acba35d8049a4
 ![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/result_matrix.png)
 
 Thật sự giải ra bài này cũng nhờ may mắn, kiến thức còn thiếu sót nhiều quá, cần học hành chăm chỉ hơn :((
-ps: Mình sẽ update bài matrix khi nghiên cứu xong vnó :D
+
+ps: Mình sẽ update bài matrix khi nghiên cứu xong và hiểu nó :D
 
 
 # Thanks for reading and have a good day ~~~~
