@@ -1,6 +1,8 @@
 
 
 # Where  your ticket
+
+## Challenge
 ```py
 #nc 34.125.6.66 5000
 from Crypto.Cipher import AES
@@ -261,6 +263,32 @@ Ví dụ xor như trên , kết quả sẽ ra là:
 ![](https://github.com/lttn1204/CTF/blob/main/2021/ISITDTU-CTF/image/pic1.png)
   
  Ta thấy nếu độ dài giữa key và data khác nhau, hàm này chỉ xor cho dến vị trí cuối cùng của bên ngắn hơn, đoạn còn lại thì sẽ đem phần còn lại của bên dài hơn xuống :d
+ 
+ Oke coi như đã thấy dc 1 cái gì đó, tiếp theo minh sẽ xem mã giả của HMAC 
+ ````py
+ function hmac is
+    input:
+        key:        Bytes    // Array of bytes
+        message:    Bytes    // Array of bytes to be hashed
+        hash:       Function // The hash function to use (e.g. SHA-1)
+        blockSize:  Integer  // The block size of the hash function (e.g. 64 bytes for SHA-1)
+        outputSize: Integer  // The output size of the hash function (e.g. 20 bytes for SHA-1)
+ 
+    // Keys longer than blockSize are shortened by hashing them
+    if (length(key) > blockSize) then
+        key ← hash(key) // key is outputSize bytes long
+
+    // Keys shorter than blockSize are padded to blockSize by padding with zeros on the right
+    if (length(key) < blockSize) then
+        key ← Pad(key, blockSize) // Pad key with zeros to make it blockSize bytes long
+
+    o_key_pad ← key xor [0x5c  blockSize]   // Outer padded key
+    i_key_pad ← key xor [0x36  blockSize]   // Inner padded key
+
+    return  hash(o_key_pad ∥ hash(i_key_pad ∥ message))
+    ```
+    
+    
  
  
   
