@@ -1,5 +1,5 @@
 
-#name=player101&role=
+
 from pwn import *
 p=connect('34.125.6.66', 5000)
 p.recvline()
